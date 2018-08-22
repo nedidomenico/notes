@@ -1,0 +1,35 @@
+------------------------------- 06/05/2017 ------------------------------------
+===============================================================================
+https://git.ccri.com/thresher/nmp/tree/listener
+
+throttle app
+https://git.ccri.com/thresher/nmp/blob/listener/nmp-throttle/src/main/scala/com/ccri/nmp/throttle/KafkaThrottleApp.scala
+
+uses this to write to kafka
+https://git.ccri.com/thresher/nmp/blob/listener/nmp-utils/src/main/scala/com/ccri/nmp/utils/KDSWriter.scala
+
+which ultimately uses this producer
+https://github.com/locationtech/geomesa/blob/1.2/geomesa-kafka/geomesa-kafka-datastore/src/main/scala/org/locationtech/geomesa/kafka/KafkaProducerFeatureStore.scala#L150
+
+that provides no way to set compression params:
+https://cwiki.apache.org/confluence/display/KAFKA/Compression
+
+for proof of concept
+	make a change to geoemsa to set those compression params
+	rebuild the throttle app to use it
+	we have metrics that show how many bytes are on each topic
+
+
+------------------------------- 06/09/2017 ------------------------------------
+===============================================================================
+
+compression.codec
+kafka ProducerConfig
+
+https://kafka.apache.org/090/documentation.html#producerconfigs
+https://kafka.apache.org/090/documentation.html#brokerconfigs
+
+
+------------------------------- 12/15/2017 ------------------------------------
+===============================================================================
+

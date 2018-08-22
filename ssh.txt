@@ -1,0 +1,26 @@
+ssh window tunneling
+  ssh -X user@host
+
+Checking for existing SSH keys
+  ssh-add -l
+  ssh-add -E md5 -l
+  ls -al ~/.ssh
+
+Create and add ssh keys to local ssh agent
+  ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+   -  Accept default file location & file names! 
+   -  Enter passphrase
+
+Start the ssh-agent in the background.
+  eval "$(ssh-agent -s)"
+  
+Add your SSH private key to the ssh-agent
+  ssh-add ~/.ssh/id_rsa
+
+Get ssh fingerprint:
+  ssh-keygen -lf ~/.ssh/id_rsa.pub
+  ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub
+
+Add my nuc's ssh key to gitlab and github
+Add the public key
+  vim ~/.ssh/id_rsa.pub
