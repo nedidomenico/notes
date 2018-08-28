@@ -1,13 +1,34 @@
 see size of contents of directorys:
   du -sbh ./*
-s
+
+Print  network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
+  netstat
+
+Best df command
+  df -aux
+
+To see every process on the system using standard syntax:
+  ps -ef
+
+To print a process tree:
+  ps -ejH
+
+To see every process running as user:
+  ps -U root -u root u
+  ps -u ndidomenico u
 
 
+________________________________________________________________________________
+My .bash_profile
+================================================================================
+eval "$(ssh-agent -s)"
+ssh-add
+================================================================================
 
-
-
+________________________________________________________________________________
 My .bashrc
 ================================================================================
 alias ll='ls -l'
-eval "$(ssh-agent -s)"
-ssh-add
+================================================================================
+
+
