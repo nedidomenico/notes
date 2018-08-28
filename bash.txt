@@ -1,0 +1,3 @@
+see size of contents of directorys:
+  du -sbh ./*
+  
