@@ -1,3 +1,13 @@
 see size of contents of directorys:
   du -sbh ./*
-  
+s
+
+
+
+
+
+My .bashrc
+================================================================================
+alias ll='ls -l'
+eval "$(ssh-agent -s)"
+ssh-add
