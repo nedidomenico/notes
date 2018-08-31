@@ -17,12 +17,23 @@ To see every process running as user:
   ps -U root -u root u
   ps -u ndidomenico u
 
+Find stuff in hidden files in this directory only
+  find ./.* -maxdepth 0 -type f | xargs grep -I "PATH=\$PATH"
+
+remove icons shortcuts from unity menu ubuntu
+you can manage your launchers (*.desktop files) in one of the following directories:
+    /usr/share/applications
+    /usr/local/share/applications
+    ~/.local/share/applications
 
 ________________________________________________________________________________
 My .bash_profile
 ================================================================================
 eval "$(ssh-agent -s)"
 ssh-add
+
+PATH=$PATH:$HOME/.local/bin:$HOME/bin
+export PATH
 ================================================================================
 
 ________________________________________________________________________________
