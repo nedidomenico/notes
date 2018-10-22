@@ -158,7 +158,30 @@ Merging:
 
 
 
+----------------      Stash      ----------------
+git stash
+  without any arguments is equivalent to git stash push
+
+git stash list
+  List modifications stashed away by this command
+
+
+git stash pop
+  Remove a single stashed state from the stash list and apply it on top of the current working tree 
+  state, i.e., do the inverse operation of git stash push
+  
+git stash apply
+  Like pop, but do not remove the state from the stash list
+
+git stash drop
+  Remove a single stash entry from the list of stash entries. When no <stash> is given, it removes
+  the latest one. i.e. stash@{0}, otherwise <stash> must be a valid stash log reference of the form
+  stash@{<revision>}.
+
+
+
 ----------------
+
 
 
 
