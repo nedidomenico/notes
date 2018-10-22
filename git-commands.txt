@@ -103,10 +103,11 @@ Update your remote references
 
 Pushing
   git push <remote> <branch>:
+  git push --set-upstream <remote> <branch>
   git push origin serverfix:awesomebranch 
     to push your local serverfix branch to the awesomebranch 
   - The next time one of your collaborators fetches from the server, they will get a reference to where the server’s version of serverfix is under the remote branch origin/serverfix
-  - It’s important to note that when you do a fetch that brings down new remote-tracking branches, you don’t automatically have local, editable copies of them. In other words, in this case, you don’t have a new serverfix branch – you only have an origin/serverfix pointer that you can’t modify
+  - It’s important to note that when you do a fetch that brings down new remote-tracking branches, you don’t automatically have local, editable copies of them. In other words, in this case, you don’t have a new serverfix branch – you only have an origin/serverfix pointer that youmodify
 
 Tracking Branches
   git checkout -b serverfix origin/serverfix
@@ -155,12 +156,9 @@ Merging:
 
   type git commit to finalize the merge commit
 
-  
 
 
-
-
-
+----------------
 
 
 
