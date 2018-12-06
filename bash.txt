@@ -32,7 +32,8 @@ remove icons shortcuts from unity menu ubuntu
 The basic format of the command for viewing the contents of a JAR file is:
   jar tf jar-file
 
-
+figure out where all the data is:
+  du -h -d1
 
 
 
