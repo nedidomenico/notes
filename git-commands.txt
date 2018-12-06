@@ -158,13 +158,12 @@ Merging:
 
 
 
-----------------      Stash      ----------------
+--------------------- Stash ---------------------
 git stash
   without any arguments is equivalent to git stash push
 
 git stash list
   List modifications stashed away by this command
-
 
 git stash pop
   Remove a single stashed state from the stash list and apply it on top of the current working tree 
@@ -181,7 +180,7 @@ git stash drop
 
 
 ----------------
-
+-------------------------------------------------
 
 
 
