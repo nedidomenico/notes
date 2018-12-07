@@ -123,7 +123,7 @@ currently in /tmp/ndidomenico/volans/natives (we are currently using gdal-2.1.2:
 Need this guy:
    libgdal.so.20
 
-REPLACED? with libgdalalljni.so:
+REPLACED? by libgdalalljni.so:
   libgdaljni.so      
   libgdalconstjni.so 
   libogrjni.so       
@@ -164,6 +164,17 @@ What I did yesterday
 What I'm doing today
 What I need to follow-up on after this meeting with someone
 What blockers I face
+
+VOL-32 Update GDAL to version 2.3.0
+
+inrev/fmerge
+
+
+
+
+
+
+
 
 
 

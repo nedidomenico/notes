@@ -36,8 +36,12 @@ figure out where all the data is:
   du -h -d1
 
 
-
-
+Find and replace text within a file using commands:
+marco@imacs-suck: ~$ echo "The slow brown unicorn jumped over the hyper sleeping dog" > orly
+marco@imacs-suck: ~$ sed s/slow/quick/ < orly > yarly
+marco@imacs-suck: ~$ cat yarly
+The quick brown unicorn jumped over the hyper sleeping dog
+echo $PATH | sed 's/:/\n/g
 
 ________________________________________________________________________________
 My .bash_profile
@@ -45,6 +49,7 @@ My .bash_profile
 PATH=$PATH:$HOME/.local/bin:$HOME/bin
 export PATH
 ================================================================================
+
 
 ________________________________________________________________________________
 My .bashrc
@@ -74,5 +79,82 @@ else
 fi
 
 ================================================================================
+
+
+________________________________________________________________________________
+My .profile
+================================================================================
+if [ -d "$HOME/my-apps/sbt/bin" ] ; then
+  PATH="$PATH:$HOME/my-apps/sbt/bin"
+fi
+if [ -d "$HOME/my-apps/idea-IU-171.4249.39/plugins/maven/lib/maven3/bin" ] ; then
+  PATH="$PATH:$HOME/my-apps/idea-IU-171.4249.39/plugins/maven/lib/maven3/bin"
+fi
+if [ -d "$HOME/my-apps/idea-IU-171.4249.39/bin" ] ; then
+  PATH="$PATH:$HOME/my-apps/idea-IU-171.4249.39/bin"
+fi
+if [ -d "$HOME/my-apps/scala-2.12.2/bin" ] ; then
+  PATH="$PATH:$HOME/my-apps/scala-2.12.2/bin"
+fi
+if [ -d "$HOME/code/devenv/git" ] ; then
+  PATH="$PATH:$HOME/code/devenv/git"
+fi
+
+================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

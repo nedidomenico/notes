@@ -15,6 +15,8 @@ git checkout experiment -- app.js
 git reset --hard <SOME-COMMIT> 
   Make your current branch (typically master ) back to point at <SOME-COMMIT> .
   Then make the files in your working tree and the index ("staging area") the same as the versions committed in <SOME-COMMIT> .
+  
+  
 ---------------- Remote Basics ----------------
 
 Showing Your Remotes:
@@ -88,8 +90,9 @@ Reset the upstream branch for the new-name local branch:
 
 
 
-
 ---------------- Remote Branches ----------------
+
+https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches
 Take the form (remote)/(branch)
 
 Remote-tracking branches are references to the state of remote branches. They’re local references that you can’t move; they’re moved automatically for you whenever you do any network communication.
@@ -104,7 +107,9 @@ Update your remote references
 Pushing
   git push <remote> <branch>:
   git push --set-upstream <remote> <branch>
-  git push origin serverfix:awesomebranch 
+  git branch --set-upstream-to=origin/<branch> gdal-update-232
+    If you wish to set tracking information for this branch you can do so with:
+  git push origin localfix:awesomebranch 
     to push your local serverfix branch to the awesomebranch 
   - The next time one of your collaborators fetches from the server, they will get a reference to where the server’s version of serverfix is under the remote branch origin/serverfix
   - It’s important to note that when you do a fetch that brings down new remote-tracking branches, you don’t automatically have local, editable copies of them. In other words, in this case, you don’t have a new serverfix branch – you only have an origin/serverfix pointer that youmodify
