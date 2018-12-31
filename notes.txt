@@ -160,23 +160,73 @@ What did I do yesterday:
 | 12/05/2018 |
 ==============
 
-What I did yesterday
-What I'm doing today
-What I need to follow-up on after this meeting with someone
-What blockers I face
+inrev/fmerge stuff:
 
-VOL-32 Update GDAL to version 2.3.0
-
-inrev/fmerge
-
-
-
-
-
-
+set up branches
+  https://atlassian.ccri.com/confluence/display/SFC/Create+PR
+set up .gitconfig
+  - get gitconfig from devel
+  - edit username and stuff
+  - edit /path/to/devenv
+set up .netrc
+  - get Personal Access Token
+  - machine api.git.ccri.com login ndidomenico password xE7LrSRM8v_4fJ6K9ikV
+edit /path/to/devenv/git/put_in_review*
 
 
+==============
+| 12/20/2018 |
+==============
 
+
+Java Plasma Client
+Setup Build Environment
+Install:
+
+java 8 or later
+maven 3.3 or later
+the same requirement of build Arrow C++
+  ^^
+  A C++11-enabled compiler. On Linux, gcc 4.8 and higher should be sufficient.
+  CMake 3.2 or higher
+  Boost
+
+Build the jar of plasma client:
+cd ..
+mvn clean install -pl plasma -am -Dmaven.test.skip
+
+Building and running tests:
+./test.sh
+
+/home/ndidomenico/apps/boost_1_69_0
+
+
+==============
+| 12/27/2018 |
+==============
+
+https://wiki.orfeo-toolbox.org/index.php/JPEG2000_with_GDAL_OpenJpeg_plugin
+
+added to artifactory to update gdal to 2.3.2
+
+
+dragonfish-natives-sos
+gdal-natives
+
+<groupId>com.ccri.gdal</groupId>
+<artifactId>gdal-natives</artifactId>
+<version>2.3.2</version>
+
+
+<outputDirectory>src/main/resources</outputDirectory>
+<groupId>com.ccri.dragonfish</groupId>
+<artifactId>dragonfish-natives-sos</artifactId>
+<version>0.3</version>
+<type>zip</type>
+
+
+
+SEE gdal-task-doc.txt
 
 
 

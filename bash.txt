@@ -20,8 +20,11 @@ To see every process running as user:
 Find all python files:
   find . -regex .*py
 
+Find no error msgs
+  find . -type f | xargs grep -s -I "\sPATH"
+
 Find stuff in hidden files in this directory only
-  find ./.* -maxdepth 0 -type f | xargs grep -I "PATH=\$PATH"
+  find -maxdepth 2 -type f -prune -name '.*' | xargs grep "opt"
 
 remove icons shortcuts from unity menu ubuntu
   you can manage your launchers (*.desktop files) in one of the following directories:
@@ -41,7 +44,17 @@ marco@imacs-suck: ~$ echo "The slow brown unicorn jumped over the hyper sleeping
 marco@imacs-suck: ~$ sed s/slow/quick/ < orly > yarly
 marco@imacs-suck: ~$ cat yarly
 The quick brown unicorn jumped over the hyper sleeping dog
-echo $PATH | sed 's/:/\n/g
+echo $PATH | sed 's/:/\n/g'
+
+
+Possible places where PATH is set:
+  ~/.profile
+  ~/.bashrc
+  /etc/bashrc
+  /etc/bash_profile 
+  /etc/profile
+  /etc/profile.d/*
+  /etc/environment
 
 ________________________________________________________________________________
 My .bash_profile
@@ -101,57 +114,6 @@ if [ -d "$HOME/code/devenv/git" ] ; then
 fi
 
 ================================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
