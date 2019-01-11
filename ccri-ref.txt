@@ -1,0 +1,5 @@
+
+
+xfer stuff:
+/net/synds1/volume1/scratch/xfer/current/dragonspell
+

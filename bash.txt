@@ -20,11 +20,8 @@ To see every process running as user:
 Find all python files:
   find . -regex .*py
 
-Find no error msgs
-  find . -type f | xargs grep -s -I "\sPATH"
-
-Find stuff in hidden files in this directory only
-  find -maxdepth 2 -type f -prune -name '.*' | xargs grep "opt"
+Find stuff in all files in ONLY this directory no error msgs
+  find . -maxdepth 1 -type f -prune 2>/dev/null | xargs grep -s -I "\$PATH"
 
 remove icons shortcuts from unity menu ubuntu
   you can manage your launchers (*.desktop files) in one of the following directories:
@@ -40,21 +37,28 @@ figure out where all the data is:
 
 
 Find and replace text within a file using commands:
-marco@imacs-suck: ~$ echo "The slow brown unicorn jumped over the hyper sleeping dog" > orly
-marco@imacs-suck: ~$ sed s/slow/quick/ < orly > yarly
-marco@imacs-suck: ~$ cat yarly
-The quick brown unicorn jumped over the hyper sleeping dog
-echo $PATH | sed 's/:/\n/g'
+  echo "The slow brown unicorn jumped over the hyper sleeping dog" > orly
+  sed s/slow/quick/ < orly > yarly
+  cat yarly
+    The quick brown unicorn jumped over the hyper sleeping dog
+  echo $PATH | sed 's/:/\n/g'
 
 
-Possible places where PATH is set:
+Possible places where THINGS are set:
   ~/.profile
   ~/.bashrc
   /etc/bashrc
+  /etc/bash.bashrc
   /etc/bash_profile 
   /etc/profile
   /etc/profile.d/*
   /etc/environment
+  
+
+Good makin':
+  make clean
+  make -j
+  use ldd on SO files
 
 ________________________________________________________________________________
 My .bash_profile
@@ -67,16 +71,16 @@ export PATH
 ________________________________________________________________________________
 My .bashrc
 ================================================================================
-alias ll='ls -l'
-SSH_ENV="$HOME/.ssh/environment"
 
+######################## add ssh keys #########################
+SSH_ENV="$HOME/.ssh/environment"
 function start_agent {
     echo "Initialising new SSH agent..."
     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
     echo succeeded
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add;
+    ssh-add
 }
 
 # Source SSH settings, if applicable
@@ -90,6 +94,26 @@ if [ -f "${SSH_ENV}" ]; then
 else
     start_agent;
 fi
+
+
+#######################  set  aliases  #########################
+alias ll='ls -l' 
+alias lal='ls -al'
+
+
+###################  source other scripts  #####################
+source ~/.ccri-env.rc
+
+
+########  Get rid of paths that have been forced on me  ########
+PATH=$(echo "$PATH" | sed -e 's|:\/opt\/devel\/tools\/idea\/bin||')
+PATH=$(echo "$PATH" | sed -e 's|:\/opt\/devel\/tools\/java\/bin||')
+
+
+
+
+################################################################
+
 
 ================================================================================
 

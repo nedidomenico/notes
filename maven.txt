@@ -6,6 +6,7 @@ mvn org.apache.maven.plugins:maven-dependency-plugin:2.1:get  \
 -Dartifact=com.nrinaudo:kantan.csv_2.12:0.4.0
 ================================================================================
 
+
 ________________________________________________________________________________
 Make a new Scala project with Maven
 ================================================================================
@@ -14,10 +15,17 @@ mvn archetype:generate -B \
 -DarchetypeArtifactId=scala-archetype-simple \
 -DarchetypeVersion=1.7 \
 -DgroupId=com.ned \
--DartifactId=project \
+-DartifactId=scala-proj-1 \
 -Dversion=0.1-SNAPSHOT \
 -Dpackage=com.ned
 ================================================================================
 
+
+________________________________________________________________________________
+Install maven artifacts
+================================================================================
+mvn install:install-file -Dfile=/home/ndidomenico/gdal-natives-2.3.2.jar \
+-DgroupId=com.ccri.gdal -DartifactId=gdal-natives -Dversion=2.3.2 -Dpackaging=jar
+================================================================================
 
 

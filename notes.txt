@@ -123,7 +123,7 @@ currently in /tmp/ndidomenico/volans/natives (we are currently using gdal-2.1.2:
 Need this guy:
    libgdal.so.20
 
-REPLACED? by libgdalalljni.so:
+REPLACED by libgdalalljni.so:
   libgdaljni.so      
   libgdalconstjni.so 
   libogrjni.so       
@@ -202,31 +202,80 @@ Building and running tests:
 
 
 ==============
-| 12/27/2018 |
+| 01/03/2019 |
 ==============
 
-https://wiki.orfeo-toolbox.org/index.php/JPEG2000_with_GDAL_OpenJpeg_plugin
+Maybe I need to use just the right flags when configuring the gdal build:
 
-added to artifactory to update gdal to 2.3.2
+Doing this quickly is:
 
+export ANT_HOME="$HOME/apps/apache-ant-1.10.5"
+export PATH=$PATH:$ANT_HOME/bin
 
-dragonfish-natives-sos
-gdal-natives
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/gdal-build/openjpeg-v2.3.0-linux-x86_64/lib
 
-<groupId>com.ccri.gdal</groupId>
-<artifactId>gdal-natives</artifactId>
-<version>2.3.2</version>
-
-
-<outputDirectory>src/main/resources</outputDirectory>
-<groupId>com.ccri.dragonfish</groupId>
-<artifactId>dragonfish-natives-sos</artifactId>
-<version>0.3</version>
-<type>zip</type>
+./configure \
+--prefix=$HOME/gdal-build/build \
+--with-java=$JAVA_HOME \
+--with-jvm-lib=$JAVA_HOME/jre/lib/amd64/server/ \
+--enable-static \
+--with-openjpeg
 
 
+make
+make install
+cd ~/gdal-build/gdal-2.3.2/swig/java
+make
 
-SEE gdal-task-doc.txt
+.4.2 = .x.x
+
+cp ~/gdal-build/build/lib/libgdal.so.20.4.2 ~/natives/libgdal.so.20
+cp ~/gdal-build/gdal-2.3.2/swig/java/.libs/libgdalalljni.so.4.2 ~/natives/libgdalalljni.so
+cp ~/gdal-build/gdal-2.3.2/swig/java/gdal.jar ~/gdal-natives-2.3.2.jar
+
+zip -r dragonfish-natives-sos-0.3.zip natives
+mvn install:install-file \
+-Dfile=/home/ndidomenico/gdal-natives-2.3.2.jar \
+-DgroupId=com.ccri.gdal \
+-DartifactId=gdal-natives \
+-Dversion=2.3.2 \
+-Dpackaging=jar
+
+mvn install:install-file \
+-Dfile=/home/ndidomenico/dragonfish-natives-sos-0.3.zip \
+-DgroupId=com.ccri.dragonfish \
+-DartifactId=dragonfish-natives-sos \
+-Dversion=0.3 \
+-Dpackaging=zip
+
+
+==============
+| 01/09/2019 |
+==============
+
+~/apps/boost_1_69_0$ PATH=$PATH:/home/ndidomenico/apps/cmake-3.13.2-Linux-x86_64/
+~/apps/boost_1_69_0$ PATH=$PATH:/home/ndidomenico/apps/cmake-3.13.2-Linux-x86_64/bin/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
