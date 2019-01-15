@@ -1,0 +1,32 @@
+* TCP/IP Basics
+    * Internet Layer Protocols
+        * IPv4 (sometimes you just say IP)
+        * IPv6
+        * ICMP
+    * Transport Layer Protocols
+    * Application Layer Protocols
+    * IP Addresses
+        * IPv4 = 32-bit value
+        * ipconfig and ifconfig commands
+    * IP Addresses in Action
+        *   Network ID + Host ID
+        *   Default gateway + routing tables connect LANs to LANs
+        *   With a network ID of 202.120.10.0 a network is limited to IP addresses from 202.120.10.1 to 202.120.10.254.
+        *   subnet masks
+                IP Address      192.168.5.23            11000000.10101000.00000101.00010111
+                Subnet mask     255.255.255.0           11111111.11111111.11111111.00000000
+                Network ID      192.168.5.0             11000000.10101000.00000101.x
+                Host ID         x.x.x.23                x.x.x.00010111
+
+                Before a computer sends out any data, it first compares the destination IP address to its own IP
+                address using the subnet mask. If the destination IP address matches the computer’s IP wherever
+                there’s a 1 in the subnet mask, then the sending computer knows the destination is local
+        *   IF Computer A’s and Computer B’s network IDs match! It’s a local call. Knowing this,
+            Computer A can now send out an ARP request, which is a broadcast, as shown in Figure 7-24, to
+            determine Computer B’s MAC address. The Address Resolution Protocol (ARP) is how a TCP/IP
+            network figures out the MAC address based on the destination IP address
+        *   Most network folks represent subnet masks using special shorthand: a / character followed by
+            a number equal to the number of ones in the subnet mask. Here are a few examples:
+                11111111111111111111111100000000 = /24 (24 ones)
+                11111111111111110000000000000000 = /16 (16 ones)
+                11111111000000000000000000000000 = /8 (8 ones)

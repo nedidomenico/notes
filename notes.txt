@@ -256,23 +256,35 @@ mvn install:install-file \
 ~/apps/boost_1_69_0$ PATH=$PATH:/home/ndidomenico/apps/cmake-3.13.2-Linux-x86_64/
 ~/apps/boost_1_69_0$ PATH=$PATH:/home/ndidomenico/apps/cmake-3.13.2-Linux-x86_64/bin/
 
+./configure \
+--prefix=$HOME/gdal-build/build \
+--with-jasper=no \
+--with-png=internal \
+--with-jpeg=internal \
+--with-java=yes \
+--with-openjpeg=internal \
+--with-libz=internal \
+--with-libtiff=internal \
+--with-geotiff=internal \
+--with-curl=/usr/bin/curl-config \
+
+
+
+<groupId>com.ccri.gdal</groupId>
+<artifactId>gdal-natives</artifactId>
+<version>2.3.2</version>
+
+
+<outputDirectory>src/main/resources</outputDirectory>
+<groupId>com.ccri.dragonfish</groupId>
+<artifactId>dragonfish-natives-sos</artifactId>
+<version>0.3</version>
+<type>zip</type>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+COMP001021031585
 
 
 
