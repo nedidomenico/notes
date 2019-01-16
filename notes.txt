@@ -269,6 +269,18 @@ mvn install:install-file \
 --with-curl=/usr/bin/curl-config \
 
 
+./configure \
+--prefix=$HOME/gdal-build/build \
+--with-jasper=no \
+--with-png=internal \
+--with-jpeg=internal \
+--with-java=yes \
+--with-openjpeg=internal \
+--with-libz=internal \
+--with-libtiff=internal \
+--with-geotiff=internal \
+--with-curl=/usr/bin/curl-config \
+
 
 <groupId>com.ccri.gdal</groupId>
 <artifactId>gdal-natives</artifactId>
@@ -286,8 +298,10 @@ mvn install:install-file \
 
 COMP001021031585
 
+/home/ndidomenico/.m2/repository/org/apache/maven/plugins/maven-project-info-reports-plugin
 
-
+  503  rm -rf ~/.m2/repository/com/ccri/gdal/gdal-natives
+  504  rm -rf ~/.m2/repository/com/ccri/dragonfish/dragonfish-natives-sos
 
 
 
