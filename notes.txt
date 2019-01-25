@@ -178,7 +178,6 @@ edit /path/to/devenv/git/put_in_review*
 | 12/20/2018 |
 ==============
 
-
 Java Plasma Client
 Setup Build Environment
 Install:
@@ -212,15 +211,17 @@ Doing this quickly is:
 export ANT_HOME="$HOME/apps/apache-ant-1.10.5"
 export PATH=$PATH:$ANT_HOME/bin
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/gdal-build/openjpeg-v2.3.0-linux-x86_64/lib
-
 ./configure \
 --prefix=$HOME/gdal-build/build \
---with-java=$JAVA_HOME \
---with-jvm-lib=$JAVA_HOME/jre/lib/amd64/server/ \
---enable-static \
---with-openjpeg
-
+--with-curl=/usr/bin/curl-config \
+--with-java=yes \
+--with-jasper=no \
+--with-png \
+--with-jpeg \
+--with-openjpeg \
+--with-libz \
+--with-libtiff \
+--with-geotiff \
 
 make
 make install
@@ -248,44 +249,9 @@ mvn install:install-file \
 -Dversion=0.3 \
 -Dpackaging=zip
 
-
-==============
-| 01/09/2019 |
-==============
-
-~/apps/boost_1_69_0$ PATH=$PATH:/home/ndidomenico/apps/cmake-3.13.2-Linux-x86_64/
-~/apps/boost_1_69_0$ PATH=$PATH:/home/ndidomenico/apps/cmake-3.13.2-Linux-x86_64/bin/
-
-./configure \
---prefix=$HOME/gdal-build/build \
---with-jasper=no \
---with-png=internal \
---with-jpeg=internal \
---with-java=yes \
---with-openjpeg=internal \
---with-libz=internal \
---with-libtiff=internal \
---with-geotiff=internal \
---with-curl=/usr/bin/curl-config \
-
-
-./configure \
---prefix=$HOME/gdal-build/build \
---with-jasper=no \
---with-png=internal \
---with-jpeg=internal \
---with-java=yes \
---with-openjpeg=internal \
---with-libz=internal \
---with-libtiff=internal \
---with-geotiff=internal \
---with-curl=/usr/bin/curl-config \
-
-
 <groupId>com.ccri.gdal</groupId>
 <artifactId>gdal-natives</artifactId>
 <version>2.3.2</version>
-
 
 <outputDirectory>src/main/resources</outputDirectory>
 <groupId>com.ccri.dragonfish</groupId>
@@ -293,20 +259,40 @@ mvn install:install-file \
 <version>0.3</version>
 <type>zip</type>
 
+rm -rf ~/.m2/repository/com/ccri/gdal/gdal-natives
+rm -rf ~/.m2/repository/com/ccri/dragonfish/dragonfish-natives-sos
+
+./configure \
+--prefix=$HOME/gdal-build/build \
+--with-curl=/usr/bin/curl-config \
+--with-java=yes \
+--with-jasper=no \
+--with-png \
+--with-jpeg \
+--with-openjpeg \
+--with-libz \
+--with-libtiff \
+--with-geotiff \
 
 
+==============
+| 01/24/2019 |
+==============
 
-COMP001021031585
+2019 Goals:
+ - Find out what product I am going to help build.
 
-/home/ndidomenico/.m2/repository/org/apache/maven/plugins/maven-project-info-reports-plugin
+What packages for jenkins?
 
-  503  rm -rf ~/.m2/repository/com/ccri/gdal/gdal-natives
-  504  rm -rf ~/.m2/repository/com/ccri/dragonfish/dragonfish-natives-sos
-
-
-
-
-
-
+From ./configure --help
+--with-curl=ARG       Include curl (ARG=path to curl-config.)
+--with-java           Include Java support (ARG=yes, no or JDK home path)  [default=no]
+--with-jasper=ARG     Include JPEG-2000 support via JasPer library (ARG=path)
+--with-png=ARG        Include PNG support (ARG=internal, no or path)
+--with-jpeg=ARG       Include JPEG support (ARG=internal, no or path)
+--with-openjpeg       Include JPEG-2000 support via OpenJPEG 2.x library
+--with-libz=ARG       Include libz support (ARG=internal or libz directory)
+--with-libtiff=ARG    Libtiff library to use (ARG=internal, yes or path)
+--with-geotiff=ARG    Libgeotiff library to use (ARG=internal, yes or path)
 
 

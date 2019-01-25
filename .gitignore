@@ -56,3 +56,8 @@ pkgs
 .Rproj.user
 arrow.Rcheck/
 docker_cache
+
+confout.txt
+conHelp.txt
+ldds.txt
+
