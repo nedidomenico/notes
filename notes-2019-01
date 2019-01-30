@@ -1,18 +1,9 @@
-==============
-| 01/03/2019 |
-==============
-
-
-========================================================================================================================
-Maybe I need to use just the right flags when configuring the gdal build:
-
+========================================  configuring gdal  ============================================================
 Doing this quickly is:
 
 export ANT_HOME="$HOME/apps/apache-ant-1.10.5"
 export PATH=$PATH:$ANT_HOME/bin
 
-
-===========================================================
 ./configure \
 --prefix=$HOME/gdal-build/build \
 --with-curl=/usr/bin/curl-config \
@@ -24,8 +15,6 @@ export PATH=$PATH:$ANT_HOME/bin
 --with-libtiff=internal \
 --with-geotiff=internal \
 --with-openjpeg \
-===========================================================]
-
 
 make -j
 make install
@@ -35,7 +24,6 @@ make
 cp ~/gdal-build/build/lib/libgdal.so.20.4.2 ~/libgdal.so.20
 cp ~/gdal-build/gdal-2.3.2/swig/java/gdal.jar ~/gdal-natives-2.3.2.jar
 cp /home/ndidomenico/gdal-build/gdal-2.3.2/swig/java/.libs/libgdalalljni.so.20 ~/libgdalalljni.so
-
 
 zip -r dragonfish-natives-sos-0.3.zip natives
 
@@ -65,18 +53,9 @@ mvn install:install-file \
 
 rm -rf ~/.m2/repository/com/ccri/gdal/gdal-natives
 rm -rf ~/.m2/repository/com/ccri/dragonfish/dragonfish-natives-sos
-========================================================================================================================
 
 
-
-==============
-| 01/24/2019 |
-==============
-
-2019 Goals:
- - Find out what product I am going to help build.
-
-What packages for jenkins?
+========================================  gdal info  ===================================================================
 
 From ./configure --help:
 --with-curl=ARG       Include curl (ARG=path to curl-config.)
@@ -90,29 +69,11 @@ From ./configure --help:
 --with-geotiff=ARG    Libgeotiff library to use (ARG=internal, yes or path)
 
 
-Questions:
-    Dragonspell/Dragonfire Dragonfish Volens hydra tocamac ? Any others?
+========================================  alternative gdal natives  ====================================================
 
-    Am I going to mainly work on Volens?
-        What needs to be done?
-
-
-==============
-| 01/28/2019 |
-==============
-
-Concepts:
-    Feature Extraction
-        Dimensionality reduction process
-    Inference engine
-        Forward chaining and backward chaining
-
-
-========================================================================================================================
-HERE ARE LIES!! (important lies, for testing)
-================================================
-
-cp ~/gdal-build/gdal-2.3.2/swig/java/gdal.jar ~/gdal-natives-2.3.2.jar
+cp ~/gdal-build/build/lib/libgdal.so.20.4.2 ~/libgdal.so.20
+cp ~/gdal-build/gdal-2.3.2/swig/java/gdal.jar ~/gdal-natives-2.3.1.jar
+cp /home/ndidomenico/gdal-build/gdal-2.3.2/swig/java/.libs/libgdalalljni.so.20 ~/libgdalalljni.so
 zip -r dragonfish-natives-sos-0.2.5.zip natives
 
 mvn install:install-file \
@@ -139,12 +100,11 @@ mvn install:install-file \
 <version>0.2.5</version>
 <type>zip</type>
 
-
 diff master -> gdal-2:
     .../NativeLoader.scala
     .../volans/pom.xml
     .../volans/volans-natives/pom.xml
-========================================================================================================================
 
 scp df01:/home/ndidomenico/dragonfish-natives-sos-0.2.5.zip ~
 scp df01:/home/ndidomenico/gdal-natives-2.3.1.jar ~
+
