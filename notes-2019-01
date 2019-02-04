@@ -16,6 +16,20 @@ export PATH=$PATH:$ANT_HOME/bin
 --with-geotiff=internal \
 --with-openjpeg \
 
+========================================
+From ./configure --help:
+--prefix=PREFIX       install architecture-independent files in PREFIX
+--with-curl=ARG       Include curl (ARG=path to curl-config.)
+--with-java           Include Java support (ARG=yes, no or JDK home path)  [default=no]
+--with-jasper=ARG     Include JPEG-2000 support via JasPer library (ARG=path)
+--with-png=ARG        Include PNG support (ARG=internal, no or path)
+--with-jpeg=ARG       Include JPEG support (ARG=internal, no or path)
+--with-libz=ARG       Include libz support (ARG=internal or libz directory)
+--with-libtiff=ARG    Libtiff library to use (ARG=internal, yes or path)
+--with-geotiff=ARG    Libgeotiff library to use (ARG=internal, yes or path)
+--with-openjpeg       Include JPEG-2000 support via OpenJPEG 2.x library
+========================================
+
 make -j
 make install
 cd ~/gdal-build/gdal-2.3.2/swig/java
@@ -53,20 +67,6 @@ mvn install:install-file \
 
 rm -rf ~/.m2/repository/com/ccri/gdal/gdal-natives
 rm -rf ~/.m2/repository/com/ccri/dragonfish/dragonfish-natives-sos
-
-
-========================================  gdal info  ===================================================================
-
-From ./configure --help:
---with-curl=ARG       Include curl (ARG=path to curl-config.)
---with-java           Include Java support (ARG=yes, no or JDK home path)  [default=no]
---with-jasper=ARG     Include JPEG-2000 support via JasPer library (ARG=path)
---with-png=ARG        Include PNG support (ARG=internal, no or path)
---with-jpeg=ARG       Include JPEG support (ARG=internal, no or path)
---with-openjpeg       Include JPEG-2000 support via OpenJPEG 2.x library
---with-libz=ARG       Include libz support (ARG=internal or libz directory)
---with-libtiff=ARG    Libtiff library to use (ARG=internal, yes or path)
---with-geotiff=ARG    Libgeotiff library to use (ARG=internal, yes or path)
 
 
 ========================================  alternative gdal natives  ====================================================
@@ -107,4 +107,37 @@ diff master -> gdal-2:
 
 scp df01:/home/ndidomenico/dragonfish-natives-sos-0.2.5.zip ~
 scp df01:/home/ndidomenico/gdal-natives-2.3.1.jar ~
+
+
+========================================  fixing the natives problem on jenkins  =======================================
+
+01-31 - I have put the new natives to be transferred in xfer
+
+old
+========================================
+./configure \
+--prefix=$HOME/gdal-build/build \
+--with-curl=/usr/bin/curl-config \
+--with-java=yes \
+--with-jasper=no \
+--with-png=internal \
+--with-jpeg=internal \
+--with-libz=internal \
+--with-libtiff=internal \
+--with-geotiff=internal \
+--with-openjpeg \
+========================================
+
+./configure \
+--prefix=$HOME/gdal-build/build \
+--with-curl=/usr/bin/curl-config \
+--with-java=yes \
+--with-jasper=no \
+--with-png \
+--with-jpeg=internal \
+--with-libz=internal \
+--with-libtiff=internal \
+--with-geotiff=internal \
+--with-openjpeg > tmp.txt
+
 
