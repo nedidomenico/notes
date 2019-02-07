@@ -1,0 +1,8 @@
+========================================  Feb 2019  ====================================================================
+
+- Try to run volans on gpu04
+- Install AWS CLI on nuc
+- Build Volans and put jar on gpu04
+- Put new natives on gpu04
+- gpu04 needs libzstd and openJPEG
+  - ldd /tmp/ndidomenico/volans/natives-2.3.2/libgdal.so.20

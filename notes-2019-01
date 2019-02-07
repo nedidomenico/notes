@@ -8,13 +8,7 @@ export PATH=$PATH:$ANT_HOME/bin
 --prefix=$HOME/gdal-build/build \
 --with-curl=/usr/bin/curl-config \
 --with-java=yes \
---with-jasper=no \
---with-png=internal \
---with-jpeg=internal \
---with-libz=internal \
---with-libtiff=internal \
---with-geotiff=internal \
---with-openjpeg \
+--with-jasper=no
 
 ========================================
 From ./configure --help:
@@ -68,76 +62,6 @@ mvn install:install-file \
 rm -rf ~/.m2/repository/com/ccri/gdal/gdal-natives
 rm -rf ~/.m2/repository/com/ccri/dragonfish/dragonfish-natives-sos
 
-
-========================================  alternative gdal natives  ====================================================
-
-cp ~/gdal-build/build/lib/libgdal.so.20.4.2 ~/libgdal.so.20
-cp ~/gdal-build/gdal-2.3.2/swig/java/gdal.jar ~/gdal-natives-2.3.1.jar
-cp /home/ndidomenico/gdal-build/gdal-2.3.2/swig/java/.libs/libgdalalljni.so.20 ~/libgdalalljni.so
-zip -r dragonfish-natives-sos-0.2.5.zip natives
-
-mvn install:install-file \
--Dfile=/home/ndidomenico/gdal-natives-2.3.1.jar \
--DgroupId=com.ccri.gdal \
--DartifactId=gdal-natives \
--Dversion=2.3.1 \
--Dpackaging=jar
-
-mvn install:install-file \
--Dfile=/home/ndidomenico/dragonfish-natives-sos-0.2.5.zip \
--DgroupId=com.ccri.dragonfish \
--DartifactId=dragonfish-natives-sos \
--Dversion=0.2.5 \
--Dpackaging=zip
-
-<groupId>com.ccri.gdal</groupId>
-<artifactId>gdal-natives</artifactId>
-<version>2.3.1</version>
-
-<outputDirectory>src/main/resources</outputDirectory>
-<groupId>com.ccri.dragonfish</groupId>
-<artifactId>dragonfish-natives-sos</artifactId>
-<version>0.2.5</version>
-<type>zip</type>
-
-diff master -> gdal-2:
-    .../NativeLoader.scala
-    .../volans/pom.xml
-    .../volans/volans-natives/pom.xml
-
-scp df01:/home/ndidomenico/dragonfish-natives-sos-0.2.5.zip ~
-scp df01:/home/ndidomenico/gdal-natives-2.3.1.jar ~
-
-
-========================================  fixing the natives problem on jenkins  =======================================
-
-01-31 - I have put the new natives to be transferred in xfer
-
-old
-========================================
-./configure \
---prefix=$HOME/gdal-build/build \
---with-curl=/usr/bin/curl-config \
---with-java=yes \
---with-jasper=no \
---with-png=internal \
---with-jpeg=internal \
---with-libz=internal \
---with-libtiff=internal \
---with-geotiff=internal \
---with-openjpeg \
-========================================
-
-./configure \
---prefix=$HOME/gdal-build/build \
---with-curl=/usr/bin/curl-config \
---with-java=yes \
---with-jasper=no \
---with-png \
---with-jpeg=internal \
---with-libz=internal \
---with-libtiff=internal \
---with-geotiff=internal \
---with-openjpeg > tmp.txt
-
+scp df01:/home/ndidomenico/dragonfish-natives-sos-0.3.zip ~
+scp df01:/home/ndidomenico/gdal-natives-2.3.2.jar ~
 
