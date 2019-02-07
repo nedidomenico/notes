@@ -1,8 +1,22 @@
-========================================  Feb 2019  ====================================================================
+========================================  volans on gpu04  =============================================================
 
 - Try to run volans on gpu04
 - Install AWS CLI on nuc
+  - https://atlassian.ccri.com/confluence/display/VOL/Testing+Volans+with+Localstack
+  - https://docs.aws.amazon.com/cli/latest/reference/s3/
 - Build Volans and put jar on gpu04
 - Put new natives on gpu04
 - gpu04 needs libzstd and openJPEG
   - ldd /tmp/ndidomenico/volans/natives-2.3.2/libgdal.so.20
+
+
+https://atlassian.ccri.com/confluence/display/VOL/Simple+Volans+%28Manual%29+Integration+Test
+  scp /home/ndidomenico/code/volans/volans-tools/target/volans-tools-0.3-SNAPSHOT-cuda-9.2.jar gpu04:~/
+  scp /tmp/ndidomenico/volans/natives-2.3.2/* gpu04:~/application.conf
+  ssh gpu04 -L 5005:localhost:5005
+
+========================================  CompTIA Security+ Class  =====================================================
+
+Candidate ID:
+  COMP001021031585
+
