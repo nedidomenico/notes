@@ -22,9 +22,9 @@ Get ssh fingerprint:
   ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub
 
 Add ssh public key to server
-eval $(ssh-agent -s)
-ssh-add ~/.ssh/id_rsa
-ssh-copy-id
+  eval $(ssh-agent -s)
+  ssh-add ~/.ssh/id_rsa
+  ssh-copy-id user@host
 
 Add my nuc's ssh key to gitlab and github
 Add the public key
