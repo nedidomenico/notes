@@ -94,17 +94,58 @@ Routing
   ======================================================================================================================
 
   * netstat –r command
-  *
+* Network Address Translation - 230
+  * Hides the IP addresses of computers on the LAN but still enable those computers to communicate with the broader
+    Internet.
+  * Classic Setup:
+    * First, you need to get a block of legitimate, unique, expensive IP addresses from an (ISP). You purchase a
+      network ID—say, 1.2.3.136/29.
+    * Second, you assign an IP address to each computer and to the LAN connection on the router.
+    * Third, you assign the IP address for the ISP’s router to the WAN connection on the local router.
+    * All of the clients on the network have the same default gateway.This router, called a gateway router,
+      acts as the default gateway for a number of client computers.
+  * This style of network mirrors how computers in LANs throughout the world connected to the Internet for the first 20
+    years, but the major problems of security and a finite number of IP addresses worsened as more and more computers
+    connected.
+  * NAT solved both of these issues for many years. NAT is a simple concept: the router replaces the source IP address
+    of a computer with its outside interface address on outgoing packets.
+  * The simplest NAT, called basic NAT, does exactly that, translating the private or internal IP address to a global
+    IP address on a one-to-one basis.
+* Port Address Translation - 232
+  * Most internal networks use a block of private IP addresses for the hosts inside the network. They connect to the
+    Internet through one or more public IP addresses.
+  * The most common form of NAT that handles this one-to-many connection—called Port Address Translation (PAT)—uses
+    port numbers to map traffic from specific machines in the network.
+    * PAT uses port numbers to map traffic from specific machines in the network.
+* Port Forwarding - 234
+  * The obvious drawback to relying exclusively on PAT for network address translation is that it only works for
+    outgoing communication, not incoming communication.
 
+    With port forwarding, you can designate a specific local address for various network services.
+    Computers outside the network can request a service using the public IP address of the router and
+    the port number of the desired service. The port-forwarding router would examine the packet,
+    look at the list of services mapped to local addresses, and then send that packet along to the proper
+    recipient.
+    You can use port forwarding to hide a service hosted inside your network by changing the
+    default port number for that service. To hide an internal Web server, for example, you could
+    change the request port number to something other than port 80, the default for HTTP traffic.
+    The router in Figure 8-16, for example, is configured to forward all port 8080 packets to the
+    internal Web server at port 80.
+* Dynamic NAT - 236
 
-
-Vol Code
-Vol Func
-Vol Libs
-Vol Depn
-
-AWS
-Mshin lrn
-Sec+
-
-
+Dynamic Routing
+* Routing Metrics - 238
+* Distance Vector and Path Vector - 239
+  * RIPv1, RIPv2
+  * BGP - 244
+    * Autonomous System Number
+    * Exterior Gateway Protocol
+    * Interior Gateway Protocols
+      Neither EGP nor IGP is a dynamic routing protocol; rather these are terms used by the large Internet
+      service providers to separate their interconnected routers using ASNs from other interconnected
+      networks that are not part of this special group of companies. The easy way to keep these terms
+      separate is to appreciate that although many protocols are used within Autonomous Systems, such
+      as RIP, the Internet has settled on one protocol for communication between each AS: the Border
+      Gateway Protocol (BGP-4). BGP is the glue of the Internet, connecting all of the Autonomous
+      Systems. Other dynamic routing protocols such as RIP are, by definition, IGP. The current ver-
+      sion of BGP is BGP-4.

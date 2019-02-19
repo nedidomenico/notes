@@ -23,4 +23,4 @@ Candidate ID:
 1.  ssh nc-master
 2.  /opt/accumulo/bin/accumulo shell -u root (secret)
 3.  droptable -p "ds.YourTablePrefix.*" -f
-      (only use the "-f" if you are SURE your prefix is correct and non-overlapping with anyone else's tables)
+      (only use the "-f" if you are SURE your prefix is correct and non-overlapping with anyone else's tables)f
