@@ -1,40 +1,26 @@
-see size of contents of directorys:
-  du -sbh ./*
+Useful
+  du, df, netstat
 
-Print  network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
-  netstat
-
-Best df command
-  df -aux
-
-To see every process on the system using standard syntax:
+See process on the system:
   ps -ef
-
-To print a process tree:
   ps -ejH
-
-To see every process running as user:
   ps -U root -u root u
   ps -u ndidomenico u
 
-Find all python files:
-  find . -regex .*py
+Find:
+  all python files:
+    find . -regex .*py
+  stuff in all files in ONLY this directory no error msgs
+    find . -maxdepth 1 -type f -prune 2>/dev/null | xargs grep -s -I "\$PATH"
 
-Find stuff in all files in ONLY this directory no error msgs
-  find . -maxdepth 1 -type f -prune 2>/dev/null | xargs grep -s -I "\$PATH"
+Remove icons shortcuts from unity menu ubuntu.
+Manage your launchers (*.desktop files) in one of the following directories:
+  /usr/share/applications
+  /usr/local/share/applications
+  ~/.local/share/applications
 
-remove icons shortcuts from unity menu ubuntu
-  you can manage your launchers (*.desktop files) in one of the following directories:
-    /usr/share/applications
-    /usr/local/share/applications
-    ~/.local/share/applications
-
-The basic format of the command for viewing the contents of a JAR file is:
+View the contents of a JAR file is:
   jar tf jar-file
-
-figure out where all the data is:
-  du -h -d1
-
 
 Find and replace text within a file using commands:
   echo "The slow brown unicorn jumped over the hyper sleeping dog" > orly
@@ -42,7 +28,6 @@ Find and replace text within a file using commands:
   cat yarly
     The quick brown unicorn jumped over the hyper sleeping dog
   echo $PATH | sed 's/:/\n/g'
-
 
 Possible places where THINGS are set:
   ~/.profile
@@ -53,20 +38,17 @@ Possible places where THINGS are set:
   /etc/profile
   /etc/profile.d/*
   /etc/environment
-  
 
 Good makin':
   make clean
   make -j
-  use ldd on SO files
-
+  ldd command
 ________________________________________________________________________________
 My .bash_profile
 ================================================================================
 PATH=$PATH:$HOME/.local/bin:$HOME/bin
 export PATH
 ================================================================================
-
 
 ________________________________________________________________________________
 My .bashrc
@@ -109,14 +91,7 @@ source ~/.ccri-env.rc
 PATH=$(echo "$PATH" | sed -e 's|:\/opt\/devel\/tools\/idea\/bin||')
 PATH=$(echo "$PATH" | sed -e 's|:\/opt\/devel\/tools\/java\/bin||')
 
-
-
-
-################################################################
-
-
 ================================================================================
-
 
 ________________________________________________________________________________
 My .profile

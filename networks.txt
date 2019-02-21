@@ -141,11 +141,11 @@ Dynamic Routing
     * Autonomous System Number
     * Exterior Gateway Protocol
     * Interior Gateway Protocols
-      Neither EGP nor IGP is a dynamic routing protocol; rather these are terms used by the large Internet
-      service providers to separate their interconnected routers using ASNs from other interconnected
-      networks that are not part of this special group of companies. The easy way to keep these terms
-      separate is to appreciate that although many protocols are used within Autonomous Systems, such
-      as RIP, the Internet has settled on one protocol for communication between each AS: the Border
-      Gateway Protocol (BGP-4). BGP is the glue of the Internet, connecting all of the Autonomous
-      Systems. Other dynamic routing protocols such as RIP are, by definition, IGP. The current ver-
-      sion of BGP is BGP-4.
+        Neither EGP nor IGP is a dynamic routing protocol; rather these are terms used by the large Internet
+        service providers to separate their interconnected routers using ASNs from other interconnected
+        networks that are not part of this special group of companies. The easy way to keep these terms
+        separate is to appreciate that although many protocols are used within Autonomous Systems, such
+        as RIP, the Internet has settled on one protocol for communication between each AS: the Border
+        Gateway Protocol (BGP-4). BGP is the glue of the Internet, connecting all of the Autonomous
+        Systems. Other dynamic routing protocols such as RIP are, by definition, IGP. The current ver-
+        sion of BGP is BGP-4.
