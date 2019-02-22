@@ -11,5 +11,5 @@ target/**
 target
 
 #other
-archive/**
+tmp/**
 tmp*
