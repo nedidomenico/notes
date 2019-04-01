@@ -20,7 +20,19 @@ https://atlassian.ccri.com/confluence/display/VOL/Simple+Volans+%28Manual%29+Int
 Candidate ID:
   COMP001021031585
 
+
+accumulo?
+--------- 
 1.  ssh nc-master
 2.  /opt/accumulo/bin/accumulo shell -u root (secret)
 3.  droptable -p "ds.YourTablePrefix.*" -f
-      (only use the "-f" if you are SURE your prefix is correct and non-overlapping with anyone else's tables)f
+      (only use the "-f" if you are SURE your prefix is correct and non-overlapping with anyone else's tables)
+4
+
+
+
+
+
+find -type f | xargs grep -i subdataset
+
+gdalinfo.java

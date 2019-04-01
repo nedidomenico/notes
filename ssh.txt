@@ -1,38 +1,42 @@
-ssh window tunneling
-  ssh -X user@host
 
-Checking for existing SSH keys
-  ssh-add -l
-  ssh-add -E md5 -l
-  ls -al ~/.ssh
 
-Create and add ssh keys to local ssh agent
-  ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-   -  Accept default file location & file names! 
-   -  Enter passphrase
+Checking for existing SSH keys:
+-------------------------------
+ssh-add -l
+ssh-add -E md5 -l
+ls -al ~/.ssh
 
-Start the ssh-agent in the background.
-  eval "$(ssh-agent -s)"
-  
-Add your SSH private key to the ssh-agent
-  ssh-add ~/.ssh/id_rsa
+Create and add ssh keys to local ssh agent:
+-------------------------------------------
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+-  Accept default file location & file names!
+-  Enter passphrase
+Start the ssh-agent in the background:
+eval "$(ssh-agent -s)"
+Add your SSH private key to the ssh-agent:
+ssh-add ~/.ssh/id_rsa
+
+Add ssh public key to server:
+-----------------------------
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_rsa
+ssh-copy-id user@host
+
 
 Get ssh fingerprint:
-  ssh-keygen -lf ~/.ssh/id_rsa.pub
-  ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub
-
-Add ssh public key to server
-  eval $(ssh-agent -s)
-  ssh-add ~/.ssh/id_rsa
-  ssh-copy-id user@host
+--------------------
+ssh-keygen -lf ~/.ssh/id_rsa.pub
+ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub
 
 Add my nuc's ssh key to gitlab and github
 Add the public key
   vim ~/.ssh/id_rsa.pub
 
-________________________________________________________________________________
-X11 forwarding
-================================================================================
+
+ssh window tunneling (X11 tunneling):
+-------------------------------------
+ssh -X user@host
+google for setup
 Your client must be set up to forward X11.
 Your server must be set up to allow X11 forwarding.
 Your server must be able to set up X11 authentication.
@@ -53,4 +57,3 @@ set to their proper values. If you run ssh and DISPLAY is not set, it means ssh 
 To confirm that ssh is forwarding X11, check for a line containing Requesting X11 forwarding in the ssh -v -X output.
 Note that the server won't reply either way, a security precaution of hiding details from potential attackers.
 
-================================================================================
