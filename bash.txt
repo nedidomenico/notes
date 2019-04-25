@@ -1,5 +1,5 @@
 Useful:
-------
+-------
 du, df, netstat
 
 
@@ -107,26 +107,16 @@ PATH=$(echo "$PATH" | sed -e 's|:\/opt\/devel\/tools\/java\/bin||')
 
 My .profile:
 ------------
-
-if [ -d "$HOME/my-apps/sbt/bin" ] ; then
-  PATH="$PATH:$HOME/my-apps/sbt/bin"
+if [ -d "/home/ndidomenico/.local/bin"  ] ; then
+  [[ ":$PATH:" != *":/home/ndidomenico/.local/bin:"* ]] && PATH="/home/ndidomenico/.local/bin:${PATH}"
 fi
-if [ -d "$HOME/my-apps/idea-IU-171.4249.39/plugins/maven/lib/maven3/bin" ] ; then
-  PATH="$PATH:$HOME/my-apps/idea-IU-171.4249.39/plugins/maven/lib/maven3/bin"
-fi
-if [ -d "$HOME/my-apps/idea-IU-171.4249.39/bin" ] ; then
-  PATH="$PATH:$HOME/my-apps/idea-IU-171.4249.39/bin"
-fi
-if [ -d "$HOME/my-apps/scala-2.12.2/bin" ] ; then
-  PATH="$PATH:$HOME/my-apps/scala-2.12.2/bin"
-fi
-if [ -d "$HOME/code/devenv/git" ] ; then
-  PATH="$PATH:$HOME/code/devenv/git"
+if [ -d "/local/ndidomenico/bin"  ] ; then
+  [[ ":$PATH:" != *":/local/ndidomenico/bin:"* ]] && PATH="/local/ndidomenico/bin:${PATH}"
 fi
 
-
-
-
+# Get rid of paths that have been forced on me
+PATH=$(echo "$PATH" | sed -e 's|:\/opt\/devel\/tools\/idea\/bin||')
+PATH=$(echo "$PATH" | sed -e 's|:\/opt\/devel\/tools\/java\/bin||')
 
 
 
