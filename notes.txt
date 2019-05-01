@@ -1,26 +1,3 @@
-directories:
-------------
-apps
-bin
-code
-Desktop
-Documents
-Downloads
-media
-notes
-other
-projects
-tmp
-
-~/all/ ???
-
-
-gdal vsi task:
---------------
-first why don't I try and use vsicurl to open the ntif file at this location
-http://www.gwg.nga.mil/ntb/baseline/software/testfile/Nitfv2_1/i_3001a.ntf
-
-
 vsicurl syntax:
 ---------------
 /vsicurl?[option_i=val_i&]*url=http://... where each option name and value (including the value of "url") is
@@ -47,7 +24,7 @@ My Current Tasks:
   VOL-63  - Check if new GDAL version can read image metadata and tiles directly from S3
 
 
-Run my volans/tools/PostProcessingSingle.scala:
+Run PostProcessingSingle.scala:
 -----------------------------------------------
 Options:
   -Dconfig.file=/local/ndidomenico/code/vol1/volans/volans-tools/src/test/resources/reference.conf
@@ -91,20 +68,24 @@ Put up PR:
   # git inrev master # for github
 
 
-Work on VOL-151:
-----------------
-  - What is CnnWriterParsingTest.parsingCnnWritersTest doing right now?
+Run SentinelFileExists:
+-----------------------
+cd /net/synds1/volume1/projects/dragonfish/volans/
+export LD_LIBRARY_PATH=/net/synds1/volume1/projects/dragonfish/volans/
+mvn test -pl volans-tools
 
 
+My Current Tasks:
+-----------------
+DS-89 standalone post processing worker
+DS-95 add done flag check and post to scala
+VOL-63 Check if new GDAL version can read image metadata and tiles directly from S3
+VOL-151 Use mini-Accumulo for unit tests
+VOL-156 Create Stand-Along Post Processing Capability
 
 
-
-
-
-
-
-
-
+- Add a branch to high side volans
+- Move natives to a good place
 
 
 

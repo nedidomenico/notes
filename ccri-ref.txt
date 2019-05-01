@@ -1,4 +1,0 @@
-xfer stuff:
------------
-cd /net/synds1/volume1/scratch/xfer/current/dragonspell
-
