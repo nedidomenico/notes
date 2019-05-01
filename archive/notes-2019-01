@@ -1,0 +1,121 @@
+========================================  configuring gdal  ============================================================
+Doing this quickly is:
+
+export ANT_HOME="$HOME/apps/apache-ant-1.10.5"
+export PATH=$PATH:$ANT_HOME/bin
+
+./configure \
+--prefix=$HOME/gdal-build/build \
+--with-curl=/usr/bin/curl-config \
+--with-java=yes \
+--with-jasper=no
+
+========================================
+From ./configure --help:
+--prefix=PREFIX       install architecture-independent files in PREFIX
+--with-curl=ARG       Include curl (ARG=path to curl-config.)
+--with-java           Include Java support (ARG=yes, no or JDK home path)  [default=no]
+--with-jasper=ARG     Include JPEG-2000 support via JasPer library (ARG=path)
+--with-png=ARG        Include PNG support (ARG=internal, no or path)
+--with-jpeg=ARG       Include JPEG support (ARG=internal, no or path)
+--with-libz=ARG       Include libz support (ARG=internal or libz directory)
+--with-libtiff=ARG    Libtiff library to use (ARG=internal, yes or path)
+--with-geotiff=ARG    Libgeotiff library to use (ARG=internal, yes or path)
+--with-openjpeg       Include JPEG-2000 support via OpenJPEG 2.x library
+========================================
+
+make -j
+make install
+cd ~/gdal-build/gdal-2.3.2/swig/java
+make
+
+cp ~/gdal-build/build/lib/libgdal.so.20.4.2 ~/libgdal.so.20
+cp ~/gdal-build/gdal-2.3.2/swig/java/gdal.jar ~/gdal-natives-2.3.2.jar
+cp /home/ndidomenico/gdal-build/gdal-2.3.2/swig/java/.libs/libgdalalljni.so.20 ~/libgdalalljni.so
+
+zip -r dragonfish-natives-sos-0.3.zip natives
+
+mvn install:install-file \
+-Dfile=/home/ndidomenico/gdal-natives-2.3.2.jar \
+-DgroupId=com.ccri.gdal \
+-DartifactId=gdal-natives \
+-Dversion=2.3.2 \
+-Dpackaging=jar
+
+mvn install:install-file \
+-Dfile=/home/ndidomenico/dragonfish-natives-sos-0.3.zip \
+-DgroupId=com.ccri.dragonfish \
+-DartifactId=dragonfish-natives-sos \
+-Dversion=0.3 \
+-Dpackaging=zip
+
+<groupId>com.ccri.gdal</groupId>
+<artifactId>gdal-natives</artifactId>
+<version>2.3.2</version>
+
+<outputDirectory>src/main/resources</outputDirectory>
+<groupId>com.ccri.dragonfish</groupId>
+<artifactId>dragonfish-natives-sos</artifactId>
+<version>0.3</version>
+<type>zip</type>
+
+rm -rf ~/.m2/repository/com/ccri/gdal/gdal-natives
+rm -rf ~/.m2/repository/com/ccri/dragonfish/dragonfish-natives-sos
+
+scp df01:/home/ndidomenico/dragonfish-natives-sos-0.3.zip ~
+scp df01:/home/ndidomenico/gdal-natives-2.3.2.jar ~
+
+
+ldd stuff:
+----------
+ndidomenico@dl1-64:/local/ndidomenico/code/volans/volans-natives/src/main/resources/natives$ ldd libgdal.so.20
+        linux-vdso.so.1 (0x00007ffd6ccd7000)
+        libexpat.so.1 => /lib/x86_64-linux-gnu/libexpat.so.1 (0x00007f67efb8f000)
+        libopenjp2.so.7 => /usr/lib/x86_64-linux-gnu/libopenjp2.so.7 (0x00007f67ef939000)
+        libzstd.so.1 => /usr/lib/x86_64-linux-gnu/libzstd.so.1 (0x00007f67ef6be000)
+        libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f67ef49f000)
+        librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007f67ef297000)
+        libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f67ef093000)
+        libpcre.so.1 => not found
+        libcurl.so.4 => /usr/lib/x86_64-linux-gnu/libcurl.so.4 (0x00007f67eee14000)
+        libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f67eea8b000)
+        libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f67ee6ed000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f67ee2fc000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007f67f1099000)
+        libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f67ee0e4000)
+        libnghttp2.so.14 => /usr/lib/x86_64-linux-gnu/libnghttp2.so.14 (0x00007f67edebf000)
+        libidn2.so.0 => /usr/lib/x86_64-linux-gnu/libidn2.so.0 (0x00007f67edca2000)
+        librtmp.so.1 => /usr/lib/x86_64-linux-gnu/librtmp.so.1 (0x00007f67eda86000)
+        libpsl.so.5 => /usr/lib/x86_64-linux-gnu/libpsl.so.5 (0x00007f67ed878000)
+        libssl.so.1.1 => /usr/lib/x86_64-linux-gnu/libssl.so.1.1 (0x00007f67ed60e000)
+        libcrypto.so.1.1 => /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1 (0x00007f67ed196000)
+        libgssapi_krb5.so.2 => /usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2 (0x00007f67ecf4b000)
+        libldap_r-2.4.so.2 => /usr/lib/x86_64-linux-gnu/libldap_r-2.4.so.2 (0x00007f67eccf9000)
+        liblber-2.4.so.2 => /usr/lib/x86_64-linux-gnu/liblber-2.4.so.2 (0x00007f67ecaeb000)
+        libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007f67ec8ce000)
+        libunistring.so.2 => /usr/lib/x86_64-linux-gnu/libunistring.so.2 (0x00007f67ec550000)
+        libgnutls.so.30 => /usr/lib/x86_64-linux-gnu/libgnutls.so.30 (0x00007f67ec1eb000)
+        libhogweed.so.4 => /usr/lib/x86_64-linux-gnu/libhogweed.so.4 (0x00007f67ebfb7000)
+        libnettle.so.6 => /usr/lib/x86_64-linux-gnu/libnettle.so.6 (0x00007f67ebd81000)
+        libgmp.so.10 => /usr/lib/x86_64-linux-gnu/libgmp.so.10 (0x00007f67ebb00000)
+        libkrb5.so.3 => /usr/lib/x86_64-linux-gnu/libkrb5.so.3 (0x00007f67eb82a000)
+        libk5crypto.so.3 => /usr/lib/x86_64-linux-gnu/libk5crypto.so.3 (0x00007f67eb5f8000)
+        libcom_err.so.2 => /lib/x86_64-linux-gnu/libcom_err.so.2 (0x00007f67eb3f4000)
+        libkrb5support.so.0 => /usr/lib/x86_64-linux-gnu/libkrb5support.so.0 (0x00007f67eb1e9000)
+        libresolv.so.2 => /lib/x86_64-linux-gnu/libresolv.so.2 (0x00007f67eafce000)
+        libsasl2.so.2 => /usr/lib/x86_64-linux-gnu/libsasl2.so.2 (0x00007f67eadb3000)
+        libgssapi.so.3 => /usr/lib/x86_64-linux-gnu/libgssapi.so.3 (0x00007f67eab72000)
+        libp11-kit.so.0 => /usr/lib/x86_64-linux-gnu/libp11-kit.so.0 (0x00007f67ea843000)
+        libtasn1.so.6 => /usr/lib/x86_64-linux-gnu/libtasn1.so.6 (0x00007f67ea630000)
+        libkeyutils.so.1 => /lib/x86_64-linux-gnu/libkeyutils.so.1 (0x00007f67ea42c000)
+        libheimntlm.so.0 => /usr/lib/x86_64-linux-gnu/libheimntlm.so.0 (0x00007f67ea223000)
+        libkrb5.so.26 => /usr/lib/x86_64-linux-gnu/libkrb5.so.26 (0x00007f67e9f96000)
+        libasn1.so.8 => /usr/lib/x86_64-linux-gnu/libasn1.so.8 (0x00007f67e9cf4000)
+        libhcrypto.so.4 => /usr/lib/x86_64-linux-gnu/libhcrypto.so.4 (0x00007f67e9abe000)
+        libroken.so.18 => /usr/lib/x86_64-linux-gnu/libroken.so.18 (0x00007f67e98a8000)
+        libffi.so.6 => /usr/lib/x86_64-linux-gnu/libffi.so.6 (0x00007f67e96a0000)
+        libwind.so.0 => /usr/lib/x86_64-linux-gnu/libwind.so.0 (0x00007f67e9477000)
+        libheimbase.so.1 => /usr/lib/x86_64-linux-gnu/libheimbase.so.1 (0x00007f67e9268000)
+        libhx509.so.5 => /usr/lib/x86_64-linux-gnu/libhx509.so.5 (0x00007f67e901e000)
+        libsqlite3.so.0 => /usr/lib/x86_64-linux-gnu/libsqlite3.so.0 (0x00007f67e8d15000)
+        libcrypt.so.1 => /lib/x86_64-linux-gnu/libcrypt.so.1 (0x00007f67e8add000)

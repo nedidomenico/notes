@@ -1,0 +1,16 @@
+delete a branch both locally and on my remote:
+----------------------------------------------
+git push --delete <remote_name> <branch_name>
+git branch -d <branch_name>
+
+checkout branch and set up remote branch and remote tracking branch:
+--------------------------------------------------------------------
+git config --global push.default current
+git checkout -b <name>
+git push -u
+
+Continually merge in changes from develop as you work on your feature branch:
+-----------------------------------------------------------------------------
+git fetch
+git merge origin develop
+

@@ -1,0 +1,202 @@
+==============
+| 11/01/2018 |
+==============
+
+SCRUM
+What I did yesterday
+What I'm doing today
+What I need to follow-up on after this meeting with someone
+What blockers I face
+
+2019 Goals
+
+- Become a productive dragonspell developer
+- AWS Certification
+- Machine Learning basics
+- Renew Security+
+- Imaging science basics
+
+
+==============
+| 11/10/2018 |
+==============
+
+go to https://git.ccri.com/ccri/devenv and use it or just copy:
+  ~/.m2/settings.xml with settings for artifactory on art
+
+
+==============
+| 11/21/2018 |
+==============
+
+Steps to building GDAL 2.3.2 (the JAR and the JNI SOs)
+
+Sources:
+https://trac.osgeo.org/gdal/wiki/DownloadSource
+https://trac.osgeo.org/gdal/wiki/GdalOgrInJavaBuildInstructionsUnix
+https://ant.apache.org/manual/install.html
+https://atlassian.ccri.com/confluence/display/DRAGONFLY/How+to+deploy+Dragonfish-natives-sos+to+Artifactory
+https://atlassian.ccri.com/confluence/display/DRAGONFLY/GDAL+builds+supporting+xml%3ATRE
+https://github.com/OSGeo/homebrew-osgeo4mac/issues/397
+
+Download the GDAL sources:
+https://trac.osgeo.org/gdal/wiki/DownloadSource
+
+UnTar the sources in: <home>/gdal-232/
+
+In untared file, run:
+  ./configure --prefix=<home>/gdal-232/ --with-java=$JAVA_HOME
+  make
+  make install
+
+Install apache ant
+  https://ant.apache.org/manual/install.html
+  don't forget:
+    export ANT_HOME="<home>/apps/apache-ant-1.10.5"
+    export PATH=$PATH:$ANT_HOME/bin
+
+Build GDAL/OGR Java
+  https://trac.osgeo.org/gdal/wiki/GdalOgrInJavaBuildInstructionsUnix
+
+make sure gdal/swig/java/java.opt looks like this:
+  JAVA_HOME = /path/to/jdk
+  JAVADOC=$(JAVA_HOME)/bin/javadoc
+  JAVAC=$(JAVA_HOME)/bin/javac
+  JAVA=$(JAVA_HOME)/bin/java
+  JAR=$(JAVA_HOME)/bin/jar
+  JAVA_INCLUDE=-I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
+
+Do a "make" in gdal/swig/java
+
+test it:
+  javac apps/gdalinfo.java
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:`pwd`:"<home>/gdal-232/lib"
+  java -classpath `pwd`/gdal.jar:`pwd`:`pwd`/apps gdalinfo
+
+With luck you will see the gdalinfo usage message.
+
+
+==============
+| 12/01/2018 |
+==============
+
+You might want to do a: mv gdal.jar gdal-natives-2.3.2.jar
+
+To install a JAR in the local maven repository use the following command:
+    mvn install:install-file -Dfile=<path-to-file> -DgroupId=<group-id> -DartifactId=<artifact-id> \
+    -Dversion=<version> -Dpackaging=<packaging>
+
+so for this:
+    mvn install:install-file -Dfile=/home/ndidomenico/gdal-natives-2.3.2.jar \
+    -DgroupId=com.ccri.gdal -DartifactId=gdal-natives -Dversion=2.3.2 -Dpackaging=jar
+
+The basic format of the command for viewing the contents of a JAR file is:
+    jar tf jar-file
+
+
+==============
+| 12/02/2018 |
+==============
+
+Now you have:
+<home>/gdal-232/gdal-2.3.2/.libs/libgdal.so.20
+<home>/gdal-232/gdal-2.3.2/swig/java/.libs/libgdalalljni.so
+and:
+<home>/gdal-232/gdal-2.3.2/swig/java/gdal.java
+
+
+SO summary concering gdal-2.3.2 
+
+currently in /tmp/ndidomenico/volans/natives (we are currently using gdal-2.1.2:
+  libpng15.so.15        true
+  libopenjp2.so.7       true
+  libgdal.so.20         true
+  libgdaljni.so         false
+  libgdalconstjni.so    false
+  libogrjni.so          false
+  libosrjni.so          false
+  libnitf.jni-c.so      true
+  ... tres
+  ... j2k
+
+
+Need this guy:
+   libgdal.so.20
+
+REPLACED by libgdalalljni.so:
+  libgdaljni.so      
+  libgdalconstjni.so 
+  libogrjni.so       
+  libosrjni.so
+
+Have nothing to do with gdal:
+  libnitf.jni-c.so
+  libpng15.so.15
+  libopenjp2.so.7
+
+[ndidomenico@df01 gdal-232]$ find . -regex ".*\.so.*"
+./gdal-2.3.2/swig/java/.libs/libgdalalljni.so.20.4.2
+./gdal-2.3.2/swig/java/.libs/libgdalalljni.so.20
+./gdal-2.3.2/swig/java/.libs/libgdalalljni.so
+./gdal-2.3.2/swig/java/libgdalalljni.so
+./gdal-2.3.2/.libs/libgdal.so.20.4.2
+./gdal-2.3.2/.libs/libgdal.so.20
+./gdal-2.3.2/.libs/libgdal.so
+./lib/libgdal.so.20.4.2
+./lib/libgdal.so.20
+./lib/libgdal.so
+
+
+==============
+| 12/04/2018 |
+==============
+
+What did I do yesterday:
+  - Put new gdal in volens and ran test! All good?
+  - Created confluence page for doing that
+
+
+==============
+| 12/05/2018 |
+==============
+
+inrev/fmerge stuff:
+
+set up branches
+  https://atlassian.ccri.com/confluence/display/SFC/Create+PR
+set up .gitconfig
+  - get gitconfig from devel
+  - edit username and stuff
+  - edit /path/to/devenv
+set up .netrc
+  - get Personal Access Token
+  - machine api.git.ccri.com login ndidomenico password xE7LrSRM8v_4fJ6K9ikV
+edit /path/to/devenv/git/put_in_review*
+
+
+==============
+| 12/20/2018 |
+==============
+
+Java Plasma Client
+Setup Build Environment
+Install:
+
+java 8 or later
+maven 3.3 or later
+the same requirement of build Arrow C++
+  ^^
+  A C++11-enabled compiler. On Linux, gcc 4.8 and higher should be sufficient.
+  CMake 3.2 or higher
+  Boost
+
+Build the jar of plasma client:
+cd ..
+mvn clean install -pl plasma -am -Dmaven.test.skip
+
+Building and running tests:
+./test.sh
+
+/home/ndidomenico/apps/boost_1_69_0
+
+
