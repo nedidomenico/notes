@@ -41,8 +41,8 @@ Put native cpp libs in scope:
   java -Dconfig.file=/local/ndidomenico/code/vol1/volans/volans-tools/src/test/resources/reference.conf -cp volans-tools/target/volans-tools-0.3-SNAPSHOT-cuda-9.2.jar com.ccri.volans.tools.PostProcessingSingle
 
 
-MR for VOL-156 - Create Stand-Along Post Processing Capability:
----------------------------------------------------------------
+MR inrev / fmerge stuff:
+------------------------
 Create Development Branch
   git checkout master
   git pull
@@ -75,22 +75,20 @@ export LD_LIBRARY_PATH=/net/synds1/volume1/projects/dragonfish/volans/
 mvn test -pl volans-tools
 
 
+My Stale Branches:
+------------------
+  f_156
+  f_VOL-32
+
+
 My Current Tasks:
 -----------------
-DS-89 standalone post processing worker
 DS-95 add done flag check and post to scala
 VOL-63 Check if new GDAL version can read image metadata and tiles directly from S3
 VOL-151 Use mini-Accumulo for unit tests
+
+DS-89 standalone post processing worker
 VOL-156 Create Stand-Along Post Processing Capability
-
-
-- Add a branch to high side volans
-- Move natives to a good place
-
-
-
-
-
 
 
 
