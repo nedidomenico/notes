@@ -3,42 +3,17 @@ delete a branch both locally and on my remote:
 git push --delete <remote_name> <branch_name>
 git branch -d <branch_name>
 
+
 checkout branch and set up remote branch and remote tracking branch:
 --------------------------------------------------------------------
 git config --global push.default current
 git checkout -b <name>
 git push -u
 
-Continually merge in changes from develop as you work on your feature branch:
+
+Continually merge in changes from master as you work on your feature branch:
 -----------------------------------------------------------------------------
 git fetch
-git merge origin develop
+git merge origin master
 
 
-MR inrev / fmerge stuff:
-------------------------
-Create Development Branch
-  git checkout master
-  git pull
-  git config --global push.default current
-  git checkout -b f_ndidomenico_<x>
-  git push -u
-
-DEVELOP
-
-Merge master:
-  git fetch
-  git checkout f_<x>
-  git merge origin master
-
-Create Pull Request Branch:
-  git checkout master
-  git pull
-  git checkout -b fcr_<x>
-  git merge --squash f_<x>
-  git commit -m "<ticket_num> <good commit message>"
-
-Put up PR:
-  # Don't push anything! inrevgl pushes for you:
-  git inrevgl master # for GitLab
-  # git inrev master # for github
