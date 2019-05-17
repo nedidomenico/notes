@@ -1,0 +1,14 @@
+Run PostProcessingSingle.scala:
+-------------------------------
+Put native cpp libs in scope:
+  export LD_LIBRARY_PATH=/net/synds1/volume1/projects/dragonfish/volans/
+  java -Dconfig.file=/local/ndidomenico/code/vol1/volans/volans-tools/src/test/resources/reference.conf \
+  -cp volans-tools/target/volans-tools-0.3-SNAPSHOT-cuda-9.2.jar com.ccri.volans.tools.PostProcessingSingle
+
+
+Run SentinelFileExists:
+-----------------------
+cd /net/synds1/volume1/projects/dragonfish/volans/
+export LD_LIBRARY_PATH=/net/synds1/volume1/projects/dragonfish/volans/
+mvn test -pl volans-tools
+

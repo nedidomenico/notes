@@ -1,0 +1,12 @@
+Past:
+-----
+DS-95 add done flag check and post to scala
+VOL-63 Check if new GDAL version can read image metadata and tiles directly from S3
+VOL-151 Use mini-Accumulo for unit tests
+VOL-156 Create Stand-Along Post Processing Capability
+  DS-89 standalone post processing worker
+
+
+
+Current:
+--------

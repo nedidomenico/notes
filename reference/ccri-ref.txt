@@ -2,3 +2,29 @@ xfer stuff:
 -----------
 cd /net/synds1/volume1/scratch/xfer/current/dragonspell
 
+
+MR inrev / fmerge stuff:
+------------------------
+Create Development Branch
+  git checkout master
+  git pull
+  git config --global push.default current
+  git checkout -b f_ndidomenico_<x>
+  git push -u
+
+Merge master:
+  git fetch
+  git checkout f_<x>
+  git merge origin master
+
+Create Pull Request Branch:
+  git checkout master
+  git pull
+  git checkout -b fcr_<x>
+  git merge --squash f_<x>
+  git commit -m "<ticket_num> <good commit message>"
+
+Put up PR:
+  # Don't push anything! inrevgl pushes for you:
+  git inrevgl master # for GitLab
+  # git inrev master # for github
