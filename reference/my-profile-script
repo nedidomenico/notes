@@ -1,0 +1,10 @@
+if [ -d "/home/ndidomenico/.local/bin"  ] ; then
+  [[ ":$PATH:" != *":/home/ndidomenico/.local/bin:"* ]] && PATH="/home/ndidomenico/.local/bin:${PATH}"
+fi
+if [ -d "/local/ndidomenico/bin"  ] ; then
+  [[ ":$PATH:" != *":/local/ndidomenico/bin:"* ]] && PATH="/local/ndidomenico/bin:${PATH}"
+fi
+
+# Get rid of paths that have been forced on me
+PATH=$(echo "$PATH" | sed -e 's|:\/opt\/devel\/tools\/idea\/bin||')
+PATH=$(echo "$PATH" | sed -e 's|:\/opt\/devel\/tools\/java\/bin||')
