@@ -1,0 +1,259 @@
+com.ccri.volans.concurrent VolansConsumer.scala
+        28 logger.info(s"Starting consumer in thread $threadName")
+        38 if(x) logger.info(s"Chip group successfully processed on thread $threadName")
+        44 logger.info(s"Killing consumer on thread $threadName")
+
+
+com.ccri.volans.concurrent VolansDrainer.scala
+        31 logger.info(s"Starting queue drainer in thread $threadName")
+        44 logger.info(s"Killing queue drainer on thread $threadName")
+        47 case scala.util.Success(v) => logger.info("Drained!")
+
+
+com.ccri.volans.features.writers CnnGeoToolsWriter.scala
+        95 logger.info(s"SFT '${sft.getTypeName}' does not exist in the sink data store; creating it.")
+        97 logger.info(s"Created SFT '${sft.getTypeName}' in sink data store.")
+        99 logger.info(s"SFT '${sft.getTypeName}' already exists in the sink data store.")
+        114 logger.info("Writing " + featSize + " simple features.")
+
+
+com.ccri.volans.features.writers CnnGeoToolsWriterTest.scala
+        35 logger.info("HashFlush.flush() called")
+        48 case Success(_) => logger.info("HasFlush explicit passed")
+        53 case Success(_) => logger.info("HasFlush implicit passed")
+        58 case Success(_) => logger.info("No
+
+
+com.ccri.volans.imagery.cnn CnnChipProducer.scala
+        55 logger.info(s"Reader opened in thread ${Thread.currentThread.getName}")
+        57 logger.info(s"Rect in thread ${Thread.currentThread().getName}: ${(rect.x, rect.y, rect.width, rect.height)}")
+        60 logger.info(s"Starting chipping in thread  ${Thread.currentThread.getName}")
+        74 logger.info(s"Tile created in thread  ${Thread.currentThread.getName}")
+        115 logger.info(s"Chips created in thread  ${Thread.currentThread.getName}")
+        133 logger.info(s"Chips put in queue in thread  ${Thread.currentThread.getName}")
+        141 logger.info(s"Successfully processed chips on thread ${Thread.currentThread().getName}")
+        145 logger.info(s"$tilesLeft tiles left to process.  Queue size is ${queue.size()}.")
+
+com.ccri.volans.imagery.cnn.training Dl4jModelAverager.scala
+        57 logger.info(s"Model averaging time (ms): ${System.currentTimeMillis - tic}")
+        58 logger.info(s"Model average score: $avgScore")
+        78 logger.info(s"Saving model score plot to $plotFile")
+com.ccri.volans.imagery.cnn.training TrainingWorker.scala
+        41 logger.info(s"score on Thread ${Thread.currentThread().getName}: ${model.score}")
+        44 logger.info(s"Training time on thread ${Thread.currentThread()}: $trainTime")
+        54 logger.info(s"Writing model to ${outModelName.toString}")
+
+com.ccri.volans.imagery.dl4j Dl4jBasicChipConsumer.scala
+        61 logger.info(s"Using cnn-scoring $v")
+        64 logger.info(s"Error: no cnn scoring found.  Killing inference worker.")
+        90 logger.info(s"Restoring computation graph ${classifierFile.toString}")
+        92 logger.info("Computation graph restored")
+        99 logger.info(s"Killing CNN Worker on thread $threadName")
+        110 logger.info(s"Processing $nChips in thread $threadName")
+        137 logger.info(s"Chip Creation Rate (chips/sec) = $chipRate")
+        138 logger.info(s"INDArray Creation Rate (chips/sec) = $ndRate")
+        139 logger.info(s"Classification Rate (chips/sec) = $classRate")
+        140 logger.info(s"Scoring Rate (chips/sec) = $scoreRate")
+        141 logger.info(s"Package Rate (chips/sec) = $packRate")
+        142 logger.info(s"Consume Rate (chips/sec) = $consumeRate")
+        148 logger.info(s"Group successfully processed in thread ${Thread.currentThread.getName}")
+com.ccri.volans.imagery.dl4j Dl4jFramework.scala
+        35 logger.info(s"Initializing processing for deeplearning4j")
+
+com.ccri.volans.imagery.io CvImageReader.scala
+        57 case scala.util.Success(v) => logger.info(s"Image DateTime: $v")
+
+com.ccri.volans.imagery.postprocessing GeotoolsConfigUtils.scala
+        138 logger.info(s"Read raw CQL filter:  $rawCql")
+        142 logger.info(s"Substituted cooked CQL filter:  $cookedCql")
+        145 logger.info("No CQL filter found; using Filter.INCLUDE")
+
+
+com.ccri.volans.imagery.postprocessing.clustering CascadedUnionClustering.scala
+        61 logger.info(s"BEGIN cascaded union clustering detections query for $imageUri")
+        82 logger.info(s"Cascaded-union-clustering detections:\n  filter:  $filter\n  properties:  $properties\n  query:  $query")
+        90 logger.info(s"END cascaded union clustering detections query for $imageUri")
+        161 logger.info(s"BEGIN cascaded-union cluster identification for $imageUri")
+        173 logger.info(s"Number of non-zero chips:  ${nonZeroChipInfo.size}")
+        180 logger.info(s"Number of cluster geometries:  ${clusterGeoms.size}")
+        191 logger.info(s"Number of cluster member map entries:  ${clusterMembers.size}")
+        197 logger.info(s"Number of groups:  ${groups.size}")
+        204 logger.info(s"Number of group-map entries:  ${groupMap.size}")
+        241 logger.info(s"Identified a total of $numClusters clusters")
+        242 logger.info(s"There are ${clusterIds.size} distinct cluster IDs")
+        244 logger.info(s"END cascaded union cluster identification for $imageUri")
+        249 logger.info(s"BEGIN cascaded union cluster persistence for $imageUri")
+        260 logger.info(s"Cluster SFT '$clusterSftName' does not exist in the sink data store; creating it.")
+        262 logger.info(s"Created cluster SFT '$clusterSftName' in sink data store.")
+        264 logger.info(s"Cluster SFT '$clusterSftName' already exists in the sink data store.")
+        269 logger.info(s"Writing out clusters of type '$clusterSftName' to sink data store.")
+        282 logger.info(s"Wrote $numClusters clusters to sink store.")
+        291 logger.info(s"END cascaded union cluster persistence for $imageUri")
+
+
+com.ccri.volans.imagery.postprocessing.clustering CascadingUnionTest.scala
+        38 logger.info("Successfully instantiated post-processor from unit-test configuration file")
+        50 logger.info("Successfully cast post-processor to naive clustering")
+        54 logger.info(s"Naive clustering has a non-null cluster SFT:  ${cascadedUnionClustering.clusterSft}")
+
+
+com.ccri.volans.imagery.postprocessing.clustering Clustering.scala
+        69 logger.info(s"Beginning post-process clustering for $imageUri")
+        71 logger.info(s"Completed post-process clustering for $imageUri")
+
+
+com.ccri.volans.imagery.postprocessing.clustering DBScanClustering.scala
+        52 logger.info(s"BEGIN clustering detections query for $imageUri")
+        75 logger.info(s"Clustering detections using DBScan:\n  filter:  $filter\n  properties:  $properties\n  query:  $query")
+        83 logger.info(s"END clustering detections query for $imageUri")
+        170 logger.info(s"BEGIN DBScan cluster persistence for $imageUri")
+        175 logger.info(s"Found ${clusterArray.length} clusters to persist for image $imageUri with score greater than $minScore")
+        189 logger.info(s"Cluster SFT '${sft.getTypeName}' does not exist in the sink data store; creating it.")
+        191 logger.info(s"Created cluster SFT '${sft.getTypeName}' in sink data store.")
+        193 logger.info(s"Cluster SFT '${sft.getTypeName}' already exists in the sink data store.")
+        198 logger.info(s"Writing out clusters of type '${sft.getTypeName}' to sink data store.")
+        211 logger.info(s"Wrote $numClusters clusters to sink store.")
+        222 logger.info(s"END DBScan cluster persistence for $imageUri")
+
+
+com.ccri.volans.imagery.sensor_model GeoModel.scala
+        61 logger.info("DTED directory not set")
+        63 logger.info(s"DTED not found at path ${Dted.dtedDir.get}")
+        65 logger.info(s"DTED found at path ${Dted.dtedDir.get}")
+
+
+
+
+==============
+volans-metrics
+==============
+
+com.ccri.volans.metrics VolansMetrics.scala
+        53 logger.info("Initializing and starting metrics from configuration")
+        89 logger.info("Stopping the metrics registry")
+
+
+
+
+==============
+volans-natives
+==============
+
+
+com.ccri.volans.natives NativeLoader.scala
+        40 logger.info(s"copying $nativePathString from the jar to $destPathString on the file system")
+        60 logger.info(s"Successfully loaded ${destFile.getName}")
+        65 case scala.util.Success(v) => logger.info("successfully loaded gdal native interface bindings")
+
+============
+volans-tools
+============
+
+
+
+com.ccri.volans.tools BasicInferenceListener.scala
+        48 logger.info(s"Processing file ${imgFile.getName}")
+        54 logger.info(s"Done writing detections for image '${imgFile.getName}'")
+        56 logger.info("Beginning the post-processing step from configuration")
+        63 logger.info("Completed the post-processing step from configuration")
+        65 logger.info(s"Total number of detections: ${detectionCount.get}")
+        66 logger.info(s"Total number of chips processed: ${chipCount.get}")
+        68 logger.info(s"Processing time (s): $procTime")
+        69 logger.info(s"ProcessingRate (chips/s): ${chipCount.get.toDouble / procTime}")
+        70 logger.info(s"Done processing ${imgFile.getName}")
+        75 } else logger.info(s"$imgFile does not have required sensor model.  Image not processed.")
+
+com.ccri.volans.tools BasicInferenceSingle.scala
+        50 logger.info(s"Processing file ${imgFile.getName}")
+        61 logger.info("Beginning the post-processing step from configuration")
+        68 logger.info("Completed the post-processing step from configuration")
+        72 logger.info(s"Total number of detections: ${detectionCount.get}")
+        73 logger.info(s"Total number of chips processed: ${chipCount.get}")
+        75 logger.info(s"Processing time (s): $procTime")
+        76 logger.info(s"ProcessingRate (chips/s): ${chipCount.get.toDouble / procTime}")
+        77 logger.info(s"Done processing ${imgFile.getName}")
+        87 } else logger.info(s"$imgFile does not have required sensor model.  Image not processed.")
+
+com.ccri.volans.tools BasicPytorchInferenceSingle.scala
+        41 logger.info(s"Processing file ${imgFile.getName}")
+        48 logger.info(s"Done processing ${imgFile.getName}")
+        54 } else logger.info(s"$imgFile does not have required sensor model.  Image not processed.")
+
+com.ccri.volans.tools BasicTraining.scala
+        114 logger.info(s"Model score: ${model.score}")
+
+com.ccri.volans.tools ImageChipper.scala
+        98 logger.info(s"Number of tiles left to process: ${tileCounter.get}")
+        99 logger.info(s"Number of busy chip workers: ${chippingBlocker.get}")
+        100 logger.info(s"Number of busy chip writers: ${processingBlocker.get}")
+        101 logger.info(s"Number of chip batches in the queue: ${chipQueue.size}")
+        112 logger.info(s"Number of chips: ${chipCounter.get}")
+        113 val procTimeLog = logger.info(s"Processing time (min) = ${(System.currentTimeMillis() - tic) / (1000d * 60d)}")
+
+com.ccri.volans.tools ImageVectorizer.scala
+        211 logger.info(s"Number of tiles left to process: ${tileCounter.get}")
+        212 logger.info(s"Number of busy chip workers: ${chippingBlocker.get}")
+        213 logger.info(s"Number of busy chip vectorizers: ${processingBlocker.get}")
+        214 logger.info(s"Number of chip batches in the queue: ${chipQueue.size}")
+        215 logger.info(s"Number of detections in the queue: ${detectQueue.size}")
+        227 logger.info(s"Number of chips: ${chipCounter.get}")
+        228 logger.info(s"Processing time (min) = ${(System.currentTimeMillis() - tic) / (1000d * 60d)}")
+
+com.ccri.volans.tools SendTrainingChipMessages.scala
+        42 logger.info(s"Sending message for image $k: $json")
+
+
+com.ccri.volans.tools.callbacks S3DownloadAndProcess.scala
+        36 logger.info(s"Processing message: ${msg.getBody}")
+
+com.ccri.volans.tools.chipping CnnChipperPool.scala
+        89 logger.info(s"Shutting down chipping workers and closing CvImageReaders immediately")
+
+com.ccri.volans.tools.pipeline BasicChippingPipeline.scala
+        72 logger.info(s"Number of tiles left to process: ${tileCounter.get}")
+        73 logger.info(s"Number of busy chip workers: ${chippingBlocker.get}")
+        114 logger.info(s"Number of chips: ${basicPipeline.chipCounter.get}")
+
+com.ccri.volans.tools.pipeline BasicInferencePipeline.scala
+        95 logger.info(s"Reading nitf tre plugin directory $dirPath")
+        160 logger.info(s"Number of tiles left to process: ${tileCounter.get}")
+        161 logger.info(s"Number of busy chip workers: ${chippingBlocker.get}")
+        162 logger.info(s"Number of busy chip classifiers: ${processingBlocker.get}")
+        163 logger.info(s"Number of chip batches in the queue: ${chipSink.size()}")
+        164 logger.info(s"Number of detections in the queue: ${detectQueue.size}")
+        166 logger.info(s"Seconds since last update: $secondsSinceLastUpdate")
+        168 logger.info(s"Processing is stuck.  Terminating process immediately.")
+
+com.ccri.volans.tools.pipeline BasicPytorchInferencePipeline.scala
+        134 logger.info(s"Number of tiles left to process: ${tileCounter.get}")
+        135 logger.info(s"Number of busy chip workers: ${chippingBlocker.get}")
+        136 logger.info(s"Number of busy chip classifiers: ${processingBlocker.get}")
+        137 logger.info(s"Number of chip batches in the queue: ${chipSink.size()}")
+        138 logger.info(s"Number of detections in the queue: ${detectQueue.size}")
+
+
+com.ccri.volans.tools.training TrainingChipMaker.scala
+        157 logger.info(s"$imageFile has invalid sensor model for rectification $rectification")
+        251 logger.info(s"No keys match image ID $imageId")
+        260 logger.info(s"Key ${keysFilt.head} found and dowloaded to $file")
+        267 logger.info(s"${keysFilt.length} keys match image ID $imageId")
+        268 keysFilt.foreach(key => logger.info(s"  $key"))
+
+
+com.ccri.volans.tools.training TrainingChipS3Writer.scala
+        95 logger.info(s"Writing training chip to $localFile")
+        99 logger.info(s"Putting training chip ${localFile.getName} in bucket ${s3ConfigParams.bucket} with key $s3Key")
+        108 logger.info(s"Writing random chip to $localFile")
+        111 logger.info(s"Putting random chip ${localFile.getName} in bucket ${s3ConfigParams.bucket} with key $s3Key")
+
+
+com.ccri.volans.tools.utils FeatureConfigParamsTest.scala
+        56 logger.info(s"Schema A:  '$aName' -> '$aType'")
+        62 logger.info(s"Schema B:  '$bName' -> '$bType'")
+        76 logger.info(s"Attribute '$a':  '$name' -> '$typeSpec'")
+
+    ccri.volans.tools.utils FeatureWriterPool.scala
+        77 logger.info(s"Shutting down writer-pool workers immediately")
+com.
+    ccri.volans.tools.writers BasicDetectionSaver.scala
+        96 logger.info(s"Number of detections in the queue: ${detectQueue.size}")

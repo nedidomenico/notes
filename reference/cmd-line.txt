@@ -52,6 +52,7 @@ Possible places where THINGS are set:
 /etc/profile.d/*
 /etc/environment
 
+
 Good makin':
 ------------
 make clean

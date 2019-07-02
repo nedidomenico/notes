@@ -28,3 +28,28 @@ Put up PR:
   # Don't push anything! inrevgl pushes for you:
   git inrevgl master # for GitLab
   # git inrev master # for github
+
+
+inrev3:
+-------
+Suppose you are about to start working on ticket PROJ-123, which is to add a newline to the README.
+The recommended workflow is as follows:
+
+
+  - git wipit3 PROJ-123 addNewline. This puts you on a branch called $(whoami)_123-addNewline,
+    and updates the ticket in JIRA.
+  - Do the work. Commit early and often. Push regularly (at least before you leave for the day).
+  - When it's ready for review:
+      git inrev3 --from-wipit 'PROJ-123 Add newline to README' --assignee jdoe.
+  - Now you're on an fcr_$(whoami)_123-addNewline branch, with everything from the $(whoami)_123-addNewline
+    branch merged into it, and you are one commit ahead of the master branch. There's a PR in gitlab,
+    assigned to the user jdoe (typically the usernames are our LDAP usernames). If your project
+    has a merge request template, it has populated the merge request description.
+  - "JSmith" will then go review, you can push more changes to the PR branch, and when it's ready to
+    merge, either click the merge button in gitlab, or run git fmerge3.
+
+More detail on each step is provided below. All of the inrev functions (wipit3, inrev3, and fmerge3)
+take a -d or --debug argument that provides additional logging as they execute, and an -h argument
+to show usage information. Additional arguments are described in more detail in what follows, and in
+those usage messages.
+

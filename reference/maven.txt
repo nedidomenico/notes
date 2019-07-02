@@ -29,7 +29,7 @@ mvn archetype:generate -B \
 -DarchetypeGroupId=net.alchim31.maven \
 -DarchetypeArtifactId=scala-archetype-simple \
 -DarchetypeVersion=1.7 \
--DgroupId=com.ned \
--DartifactId=scala-proj-1 \
+-DgroupId=com.ccri \
+-DartifactId=metrics-hw \
 -Dversion=0.1-SNAPSHOT \
--Dpackage=com.ned
+-Dpackage=com.ccri

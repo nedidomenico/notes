@@ -1,0 +1,23 @@
+Chris and Nathan,
+
+Nice job identifying all of these.  Many of these are worth including.  Maybe focus on a few to start with?  Here are what I think are the most important (some may need to be added to the full list):
+
+DBScan:numClusters
+
+com.ccri.volans.imagery.dl4j Dl4jBasicChipConsumer
+ - Processing $nChips in thread $threadName
+ - Chip Creation Rate (chips/sec) = $chipRate
+ - INDArray Creation Rate (chips/sec) = $ndRate
+ - Classification Rate (chips/sec) = $classRate
+ - Scoring Rate (chips/sec) = $scoreRate
+ - Package Rate (chips/sec) = $packRate
+ - Consume Rate (chips/sec) = $consumeRate
+ - Group successfully processed : thread-metadata
+
+BasicInferenceSingle and BasicInferenceListener:
+logger.info(s"Total number of detections: ${detectionCount.get}")
+logger.info(s"Total number of chips processed: ${chipCount.get}")
+val procTime = (System.currentTimeMillis - tic) / 1000
+logger.info(s"Processing time (s): $procTime")
+logger.info(s"ProcessingRate (chips/s): ${chipCount.get.toDouble / procTime}")
+logger.info(s"Done processing ${imgFile.getName}")
