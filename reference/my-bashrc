@@ -1,41 +1,27 @@
-######################## add ssh keys #########################
-SSH_ENV="$HOME/.ssh/environment"
-function start_agent {
-    echo "Initialising new SSH agent..."
-    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    echo succeeded
-    chmod 600 "${SSH_ENV}"
-    . "${SSH_ENV}" > /dev/null
-    ssh-add
-}
-
-# Source SSH settings, if applicable
-
-if [ -f "${SSH_ENV}" ]; then
-    . "${SSH_ENV}" > /dev/null
-    #ps ${SSH_AGENT_PID} doesn't work under cywgin
-    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-        start_agent;
-    }
-else
-    start_agent;
-fi
-
+MY_KEY="/home/ndidomenico/.ssh/id_rsa"
+ssh-add -l | grep -q $MY_KEY || ssh-add $MY_KEY
 
 #######################  set  aliases  #########################
 alias ll='ls -l'
 alias lal='ls -al'
-
-
-######################    ccri stuff    #########################
-export DEVDIR=/local/ndidomenico/devel
-source ~/.ccri-env.rc
-
+alias cdl='cd /local/ndidomenico'
+alias mst='mvn -Dmaven.test.skip=true'
 
 ########  Get rid of paths that have been forced on me  ########
 PATH=$(echo "$PATH" | sed -e 's|:\/opt\/devel\/tools\/idea\/bin||')
 PATH=$(echo "$PATH" | sed -e 's|:\/opt\/devel\/tools\/java\/bin||')
+PATH=$(echo "$PATH" | sed -e 's|:\/opt.*||')
 
+#######################  ccri stuff     #########################
+export PATH=/local/ndidomenico/code/inrev:${PATH}
+export PATH=/local/ndidomenico/bin:${PATH}
+export DEVDIR=/local/ndidomenico/devel
+source ~/.ccri-env.rc
 
-
-
+#######################  kuberneties stuff   ####################
+export TILLER_NAMESPACE="ndidomenico"
+alias kc="kubectl"
+function kx () {
+   kubectl config use-context $1
+   export TILLER_NAMESPACE="$1"
+}

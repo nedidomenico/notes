@@ -1,3 +1,5 @@
+VOL-199 refine the volans-metrics module so that NoMetrics is fully supported
+
 Chris and Nathan,
 
 Nice job identifying all of these.  Many of these are worth including.  Maybe focus on a few to start with?  Here are what I think are the most important (some may need to be added to the full list):
@@ -21,3 +23,8 @@ val procTime = (System.currentTimeMillis - tic) / 1000
 logger.info(s"Processing time (s): $procTime")
 logger.info(s"ProcessingRate (chips/s): ${chipCount.get.toDouble / procTime}")
 logger.info(s"Done processing ${imgFile.getName}")
+
+
+VOL-199 refine the volans-metrics module so that NoMetrics is fully supported
+
+git inrev3 --from-wipit 'VOL-199 refine the volans-metrics module so that NoMetrics is fully supported' --assignee ndidomenico

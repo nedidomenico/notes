@@ -1,0 +1,49 @@
+VOL-103:
+--------
+Use commons-metrics in Volans so that we can collect performance data externally
+
+- How to shut down a prometheus thread
+- How to log metrics in prometheus is in a separate thread
+
+- look into lightbend/scala-logging
+  - I cloned it
+
+- MR for commons metrics
+- add metrics config to volans
+- Add Tile Producer Metric
+- Shut down prometheus when volans is "done"
+- Listener Tool
+
+I DID THIS:
+-----------
+https://atlassian.ccri.com/confluence/display/ADMIN/CCRI+Internal+Development+Certificates
+
+Docker Stuff:
+-------------
+
+GO:
+--
+export PATH=$PATH:/local/ndidomenico/apps/go/bin/
+export GOPATH=$HOME/go
+
+# Fetch the client library code and compile example.
+git clone https://github.com/prometheus/client_golang.git
+cd client_golang/examples/random
+go get -d
+go build
+
+# Start 3 example targets in separate terminals:
+./random -listen-address=:8080 &
+./random -listen-address=:8081 &
+./random -listen-address=:8082 &
+
+
+rpc_durations_seconds_count{group="production",instance="localhost:8081",job="example-random",service="uniform"}
+rpc_durations_seconds_count{group="production",instance="localhost:8081",job="example-random",service="normal"}
+rpc_durations_seconds_count{group="production",instance="localhost:8081",job="example-random",service="exponential"}
+rpc_durations_seconds_count{group="production",instance="localhost:8080",job="example-random",service="uniform"}
+rpc_durations_seconds_count{group="production",instance="localhost:8080",job="example-random",service="normal"}
+rpc_durations_seconds_count{group="production",instance="localhost:8080",job="example-random",service="exponential"}
+rpc_durations_seconds_count{group="canary",instance="localhost:8082",job="example-random",service="uniform"}
+rpc_durations_seconds_count{group="canary",instance="localhost:8082",job="example-random",service="normal"}
+rpc_durations_seconds_count{group="canary",instance="localhost:8082",job="example-random",service="exponential"}

@@ -1,0 +1,17 @@
+A p12 user certificate has been created for ndidomenico.
+  The certificate is here: /net/synds1/volume1/internal-certificates/user_certs/ndidomenico/ndidomenico.p12
+  The password is: btc60ZEDwbls1Jnu
+Please see the page below for instructions on next steps:
+  https://atlassian.ccri.com/confluence/display/ADMIN/CCRI+Internal+Development+Certificates
+
+https://atlassian.ccri.com/confluence/display/VOL/Developing+Volans+with+Helm
+
+build a Docker image from your Volans branch
+
+    cd ${SRC_HOME}/volans
+    git checkout ${YOUR_VOLANS_BRANCH}
+    mvn clean install -Djib.to.image=docker-art.ccri.com/${USER}/volans-tools
+
+enable services via overrides.yaml
+
+    vi ${OVERRIDES_HOME}/overrides.yaml
