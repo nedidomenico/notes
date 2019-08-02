@@ -1,17 +1,78 @@
+Kubernetes Quickstart:
+----------------------
+https://atlassian.ccri.com/confluence/display/DEV/Kubernetes+Quickstart
+
+Request an account from a Kubernetes Admin (ie. Seapy). Admin will provide you 3 things:
+  A config file
+  the kubernetes version (ie. "v1.13.1")
+  your very own namespace
+Install client
+nstall config
+Verify everything is installed correctly
+  kubectl get pods
+
+Pro-Tip: Add an alias to your ~/.bashrc:
+  alias kc='kubectl'
+
+Kubernetes Commands:
+# List all objects of the requested kind -- often used to find the names of pods and their running state
+    kubectl get <RESOURCE_KIND>  # ie. `kubectl get pods`
+
+# Show description of pod in the cluster -- often used in debugging to see events that have occurred to the resource
+    kubectl describe <RESOURCE_KIND> <RESOURCE_NAME>   # ie. `kubectl get pod mypod`
+
+# Show the yaml stored in the cluster -- often used in debugging
+    kubectl get <RESOURCE_KIND> -o yaml  # ie. `kubectl get pod -o yaml`
+
+# Open a shell into a pod
+    kubectl exec -it <POD_NAME> <COMMAND>  # ie. `kubectl exec -it mypod /bin/sh`
+
+# Tail the logs of a pod
+    kubectl logs -f <POD_NAME>  # ie. `kubectl logs -f mypod`
+
+See above page: Deploying a Container as a Pod
+see above page: Deploying a Container with a Deployment
+
+
+Jib Deployment Example:
+-----------------------
+https://git.ccri.com/ddseapy/jib-deployment-example
+
+
+
+
+
+
+
+https://git.ccri.com/docker/ccri-charts/tree/master/charts/dragonfire#getting-started
+https://atlassian.ccri.com/confluence/display/VOL/Developing+Volans+with+Helm
+
 A p12 user certificate has been created for ndidomenico.
   The certificate is here: /net/synds1/volume1/internal-certificates/user_certs/ndidomenico/ndidomenico.p12
   The password is: btc60ZEDwbls1Jnu
 Please see the page below for instructions on next steps:
   https://atlassian.ccri.com/confluence/display/ADMIN/CCRI+Internal+Development+Certificates
 
-https://atlassian.ccri.com/confluence/display/VOL/Developing+Volans+with+Helm
+
 
 build a Docker image from your Volans branch
-
-    cd ${SRC_HOME}/volans
-    git checkout ${YOUR_VOLANS_BRANCH}
-    mvn clean install -Djib.to.image=docker-art.ccri.com/${USER}/volans-tools
+  cd ${SRC_HOME}/volans
+  git checkout ${YOUR_VOLANS_BRANCH}
+  mvn clean install -Djib.to.image=docker-art.ccri.com/${USER}/volans-tools
 
 enable services via overrides.yaml
+  vi ${OVERRIDES_HOME}/overrides.yaml
 
-    vi ${OVERRIDES_HOME}/overrides.yaml
+
+GeoServer:
+    https://ndidomenico.istio.ccri.internal/geoserver
+Grafana:
+    https://ndidomenico.istio.ccri.internal/grafana/
+HttpBin:
+    https://ndidomenico.istio.ccri.internal/httpbin/anything?show_env=1
+Stealth:
+    https://ndidomenico.istio.ccri.internal/stealth
+Swagger-UI:
+    https://ndidomenico.istio.ccri.internal/swaggerui/
+S3:
+    https://ndidomenico.istio.ccri.internal/s3

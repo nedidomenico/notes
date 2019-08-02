@@ -2,9 +2,9 @@ TCP/IP Basics
 ========================================================================================================================
 
 * Internet Layer Protocols
-* IPv4 (sometimes you just say IP)
-* IPv6
-* ICMP
+  * IPv4 (sometimes you just say IP)
+  * IPv6
+  * ICMP
 * Transport Layer Protocols
   * TCP
   * UDP

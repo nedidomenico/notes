@@ -23,8 +23,8 @@ docker container ls -aq
 
 ####################################################################################################
 
-Part 2: Containers
-------------------
+Part 2: Containers:
+-------------------
 docker build -t friendlyhello .  # Create image using this directory's Dockerfile
 docker run -p 4000:80 friendlyhello  # Run "friendlyhello" mapping port 4000 to 80
 docker run -d -p 4000:80 friendlyhello         # Same thing, but in detached mode
@@ -67,9 +67,12 @@ You get the long container ID for your app and then are kicked back to your term
 
 Share your image:
 -----------------
-https://hub.docker.com/
+- To demonstrate the portability of what we just created, let’s upload our built image and run it somewhere else. After ll, you need to know how to push to registries when you want to deploy containers to production.
+- A registry is a collection of repositories, and a repository is a collection of images.
+- Log in with your Docker ID. If you don’t have a Docker account, sign up for one at hub.docker.com. Make note of your username
+- The notation for associating a local image with a repository on a registry is username/repository:tag. The tag is optional, but recommended, since it is the mechanism that registries use to give Docker images a version
+- Upload your tagged image to the repository
 
-https://asciinema.org/a/blkah0l4ds33tbe06y4vkme6g
 
 
 ####################################################################################################
@@ -174,6 +177,7 @@ Swarm managers can use several strategies to run containers, such as “emptiest
 Swarm managers are the only machines in a swarm that can execute your commands, or authorize other machines to join the swarm as workers. Workers are just there to provide capacity and do not have the authority to tell any other machine what it can and cannot do.
 
 Up until now, you have been using Docker in a single-host mode on your local machine. But Docker also can be switched into swarm mode, and that’s what enables the use of swarms. Enabling swarm mode instantly makes the current machine a swarm manager. From then on, Docker runs the commands you execute on the swarm you’re managing, rather than just on the current machine.
+
 
 
 

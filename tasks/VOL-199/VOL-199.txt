@@ -1,10 +1,10 @@
-VOL-199 refine the volans-metrics module so that NoMetrics is fully supported
+VOL-199:
+--------
+refine the volans-metrics module so that NoMetrics is fully supported
 
-Chris and Nathan,
-
-Nice job identifying all of these.  Many of these are worth including.  Maybe focus on a few to start with?  Here are what I think are the most important (some may need to be added to the full list):
-
-DBScan:numClusters
+Here are what I think are the most important (some may need to be added to the full list):
+com.ccri.volans.imagery.postprocessing.DBScanClustering
+ - logger.info(s"Wrote $numClusters clusters to sink store.")
 
 com.ccri.volans.imagery.dl4j Dl4jBasicChipConsumer
  - Processing $nChips in thread $threadName
@@ -17,14 +17,61 @@ com.ccri.volans.imagery.dl4j Dl4jBasicChipConsumer
  - Group successfully processed : thread-metadata
 
 BasicInferenceSingle and BasicInferenceListener:
-logger.info(s"Total number of detections: ${detectionCount.get}")
-logger.info(s"Total number of chips processed: ${chipCount.get}")
-val procTime = (System.currentTimeMillis - tic) / 1000
-logger.info(s"Processing time (s): $procTime")
-logger.info(s"ProcessingRate (chips/s): ${chipCount.get.toDouble / procTime}")
-logger.info(s"Done processing ${imgFile.getName}")
+ - logger.info(s"Total number of detections: ${detectionCount.get}")
+ - logger.info(s"Total number of chips processed: ${chipCount.get}")
+ - val procTime = (System.currentTimeMillis - tic) / 1000
+ - logger.info(s"Processing time (s): $procTime")
+ - logger.info(s"ProcessingRate (chips/s): ${chipCount.get.toDouble / procTime}")
+ - logger.info(s"Done processing ${imgFile.getName}")
+
+Common Metrics Notes:
+---------------------
+Note:
+- The CommonMetrics object had the logic to create a Dropwizard Metrics registry from the conf file AND will
+  initialize A REPORTER that reports those metrics to console or prometheus or whatever
+
+- the CommonMetrics Object should not exist. We should move creation of registries and reporters to
+  common.metrics.WithMetrics
+
+Here is how it works:
+- Extend MetricsFactory to create new factory that will take in a config and spit out a object that has the
+  MyMetrics trait
+    - If config files has not "metrics" section or there are other problems you will get a "NoMetics" instance
+    - If all goes well you will get a WithMetrics instance which extends com.ccri.commons.metrics.WithMetrics(config)
+      with MyMetrics
+    - NoMetrics and WithMetrics both implement a MyMetrics trait which extends the abstract class CommonMetrics which
+      has some base metrics methods
+        - override all the CommonMetrics methods simply by extending the common NoMetrics and WithMetrics when you make
+          your versions of these two classes
+        - This ignores object CommonMetrics
+
+- The centerpiece of DropWizard Metrics is the MetricRegistry class, which is the container for all your application’s
+  metrics
+
+- DropWizard Reporters will report the registry to something, A logger, The console, graphite
 
 
-VOL-199 refine the volans-metrics module so that NoMetrics is fully supported
 
-git inrev3 --from-wipit 'VOL-199 refine the volans-metrics module so that NoMetrics is fully supported' --assignee ndidomenico
+
+========================================================================================================================
+graphite:
+---------
+easy graphite install with synthesize
+  wget https://github.com/obfuscurity/synthesize/archive/master.zip
+  unzip master.zip
+  cd synthesize-master/
+  sudo ./install
+# UNINSTALL
+  cd synthesize-master/
+  sudo ./uninstall
+
+BETTER:
+docker run -d\
+ --name graphite\
+ --restart=always\
+ -p 4040:80\
+ -p 2003-2004:2003-2004\
+ -p 2023-2024:2023-2024\
+ -p 8125:8125/udp\
+ -p 8126:8126\
+ graphiteapp/graphite-statsd

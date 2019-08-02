@@ -1,6 +1,6 @@
 Useful:
 -------
-du, df, netstat
+du, df, netstat, lsof -i @localhost
 
 
 See process on the system:

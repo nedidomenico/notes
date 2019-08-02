@@ -15,8 +15,8 @@ git checkout experiment -- app.js
 git reset --hard <SOME-COMMIT> 
   Make your current branch (typically master ) back to point at <SOME-COMMIT> .
   Then make the files in your working tree and the index ("staging area") the same as the versions committed in <SOME-COMMIT> .
-  
-  
+
+
 ---------------- Remote Basics ----------------
 
 Showing Your Remotes:
